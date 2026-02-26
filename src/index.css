@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+:root {
+  background-color: #F4F7FF;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+}
