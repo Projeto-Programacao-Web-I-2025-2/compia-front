@@ -1,12 +1,14 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { BrowserRouter } from 'react-router'
 import './index.css'
-import TelaLogin from './pages/Login.jsx'
-import TelaCadastro from './pages/Cadastro.jsx'
-import Layout from './layouts/LayoutDefault.jsx'
+import App from './App'
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Layout />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>,
 )

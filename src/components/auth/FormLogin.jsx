@@ -1,4 +1,5 @@
 import Logo from "/logo.png"
+import { Link } from "react-router-dom"
 
 export default function FormLogin() {
     return(
@@ -11,7 +12,7 @@ export default function FormLogin() {
                 <button className='flex justify-center items-center bg-[#F174A7] w-[25vh] h-[4vh] rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer' onClick={''}>
                     <p className='text-white'>Entrar</p>
                 </button>
-                <h2 className='font-bold'>Não tem uma conta? <button className='underline hover:text-[#F174A7] cursor-pointer' onClick={''}>Cadastre-se</button></h2>
+                <h2 className='font-bold'>Não tem uma conta? <Link to={'/cadastro'} className='underline hover:text-[#F174A7] cursor-pointer'>Cadastre-se</Link></h2>
             </div>
         </div>
     )

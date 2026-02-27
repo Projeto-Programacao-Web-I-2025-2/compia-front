@@ -1,4 +1,5 @@
 import Logo from "/logo.png"
+import { Link } from "react-router-dom"
 
 export default function FormCadastro() {
     return( 
@@ -14,7 +15,7 @@ export default function FormCadastro() {
                 <button className='flex justify-center items-center bg-[#F174A7] w-[25vh] h-[4vh] rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer' onClick={''}>
                     <p className='text-white'>Cadastrar</p>
                 </button>
-                <h2 className='font-bold'>Já tem uma conta? <button className='underline hover:text-[#F174A7] cursor-pointer' onClick={''}>Entre</button></h2>
+                <h2 className='font-bold'>Já tem uma conta? <Link to={'/login'} className='underline hover:text-[#F174A7] cursor-pointer'>Entre</Link></h2>
             </div>
         </div>
     )
