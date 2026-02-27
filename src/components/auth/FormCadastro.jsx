@@ -10,8 +10,7 @@ export default function FormCadastro() {
                 <input className='border-1 border-[#979797] p-1 rounded-sm w-[25vh]' placeholder='E-mail' type='email'></input>
                 <input className='border-1 border-[#979797] p-1 rounded-sm w-[25vh]' placeholder='Senha' type='password'></input>
                 <input className='border-1 border-[#979797] p-1 rounded-sm w-[25vh]' placeholder='Confirmar Senha' type='password'></input>
-                <input className='border-1 border-[#979797] p-1 rounded-sm w-[25vh]' placeholder='CPF' type='text'></input>
-                <input className='border-1 border-[#979797] p-1 rounded-sm w-[25vh]' placeholder='Data de Nascimento' type='date'></input>
+                <input className='border-1 border-[#979797] p-1 rounded-sm w-[25vh]' placeholder='Data de Nascimento' type='text'></input>
                 <button className='flex justify-center items-center bg-[#F174A7] w-[25vh] h-[4vh] rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer' onClick={''}>
                     <p className='text-white'>Cadastrar</p>
                 </button>
