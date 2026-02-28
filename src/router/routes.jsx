@@ -2,6 +2,7 @@ import {Routes, Route, Navigate} from 'react-router-dom'
 import Login from '../pages/Login'
 import Cadastro from '../pages/Cadastro'
 import PaginaInical from '../pages/PaginaInicial'
+import PaginaProduto from '../pages/PaginaProduto'
 
 export default function RoutesApp() {
     return (
@@ -23,11 +24,18 @@ export default function RoutesApp() {
             />
 
             <Route 
-                path="cadastro"
+                path="/cadastro"
                 element={
                     <Cadastro/>
                 }
             />
+
+                <Route
+                    path="/produto/:id"
+                    element={
+                        <PaginaProduto />
+                    }
+                />
         </Routes>
     )
 }

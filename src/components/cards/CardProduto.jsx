@@ -7,7 +7,7 @@ const CardProduto = ({produto}) => {
     //substituir depois nome e preco
     return(
         <Link to={`/produto/${id}`}>
-            <div className="flex flex-col bg-[#FFFFFF] border-[#979797] rounded-lg border-1 w-[317px] h-[400px] shadow-xl">
+            <div className="flex flex-col bg-[#FFFFFF] border-[#979797] rounded-lg border-1 w-[317px] h-[400px] shadow-xl hover:bg-[#f5f5f5]">
                 <div className="fundoImagemProduto bg-[#E5E5E5] w-[270px] h-[270px] mx-auto mt-6"></div>
                 <div className="flex flex-col mr-5 ml-5 mt-6">
                     <h1 className="nomeProduto truncate">{nome}</h1>
