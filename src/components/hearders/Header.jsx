@@ -1,10 +1,29 @@
 
 import { LuSearch, LuUser, LuShoppingCart } from "react-icons/lu";
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 import Imagem from '/logo.png'
+import { isLogged } from "../../services/authService";
 
 export default function Header() {
+    const navigate = useNavigate();
+
+    const handlePerfil = async () => {
+        const token = localStorage.getItem('auth_token');
+
+        if (!token) {
+            navigate('/login');
+            return;
+        }
+
+        const user = await isLogged();
+
+        if (user) {
+            navigate('/perfil');
+        } else {
+            navigate('/login');
+        }
+    };
+
     return(
         <div className='flex items-center bg-[#5494D2] w-screen h-[15vh] shadow-2xl'>
             <div className='flex items-center bg-[#FFFFFF] w-full min-h-[7vh]'>
@@ -14,8 +33,8 @@ export default function Header() {
                     <LuSearch size={30}/>
                 </div>
                 <div className="flex mr-4 cursor-pointer space-x-4">
-                    <Link to="/login"><LuUser size={40}/></Link>
-                    <LuShoppingCart size={40}/>
+                    <button onClick={handlePerfil}><LuUser size={40}/></button>
+                    <Link to="/carrinho"><LuShoppingCart size={40}/></Link>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ import Login from '../pages/Login'
 import Cadastro from '../pages/Cadastro'
 import PaginaInical from '../pages/PaginaInicial'
 import PaginaProduto from '../pages/PaginaProduto'
+import Perfil from '../pages/Perfil'
 
 export default function RoutesApp() {
     return (
@@ -30,12 +31,20 @@ export default function RoutesApp() {
                 }
             />
 
-                <Route
-                    path="/produto/:id"
-                    element={
-                        <PaginaProduto />
-                    }
-                />
+            <Route
+                path="/produto/:id"
+                element={
+                    <PaginaProduto />
+                }
+            />
+
+            <Route
+                path='/perfil'
+                element={
+                    <Perfil />
+                }
+            />
+            
         </Routes>
     )
 }
