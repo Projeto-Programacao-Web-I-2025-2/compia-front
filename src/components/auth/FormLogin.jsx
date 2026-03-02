@@ -24,9 +24,7 @@ export default function FormLogin() {
 
         login({ email, senha }).then(() => {
             message.success("Login Realizado!");
-            setTimeout(() => {
-                navigate("/home");
-            }, 800);
+            navigate("/home");
         })
         .catch((err) => {
             const erro = err.response?.data;

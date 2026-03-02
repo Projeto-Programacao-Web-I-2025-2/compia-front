@@ -32,9 +32,7 @@ export default function FormCadastro() {
         register({nome, email, senha}).then(() => {
             message.success("Conta criada com sucesso!");
             setUsuario({ nome: '', email: '', senha: '', confirmarSenha: '' });
-            setTimeout(() => {
-                navigate("/home");
-            }, 800);
+            navigate("/home");
         })
         .catch((err) => {
             const erros = err.response?.data;
