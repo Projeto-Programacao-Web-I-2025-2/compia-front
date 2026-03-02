@@ -14,7 +14,7 @@ const ModalFiltro = () => {
                 <input className="border-1 rounded border-[#979797] p-1"></input>
             </div>
             <div className="flex space-x-16 mt-24">
-                <button className='flex justify-center items-center bg-[#F174A7] text-white rounded-lg font-bold border-1 border-[#979797] p-1 hover:bg-[#d26e97] cursor-pointer w-[90px]' onClick={''}>
+                <button className='flex justify-center items-center bg-[#F174A7] text-white rounded-lg font-bold border-1 border-[#979797] p-1 hover:bg-[#d26e97] cursor-pointer w-[90px]' onClick={() => {}}>
                     Remover
                 </button>
                 <button className="flex items-center justify-center rounded-lg p-1 bg-[#5494D2] border-1 border-[#979797] hover:bg-[#31567A] text-white cursor-pointer w-[90px]" onClick={() => {}}>

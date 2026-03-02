@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 const CardProduto = ({produto}) => {
     const { id, nome, preco} = produto || {};
 
-    //substituir depois nome e preco
     return(
         <Link to={`/produto/${id}`}>
             <div className="flex flex-col bg-[#FFFFFF] border-[#979797] rounded-lg border-1 w-[317px] h-[400px] shadow-xl hover:bg-[#f5f5f5]">

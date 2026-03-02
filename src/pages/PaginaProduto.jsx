@@ -58,7 +58,7 @@ export default function PaginaProduto() {
                             <h1 className="text-2xl line-clamp-3">{nome}</h1>
                             <h2>Autor: {autor}</h2>
                         </div>
-                        <div className="h-[400px] overflow-y-auto">
+                        <div className="max-h-[400px] overflow-y-auto">
                             {descricao}
                         </div>
                         <div className="flex items-center justify-between">
