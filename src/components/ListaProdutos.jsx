@@ -26,10 +26,9 @@ const ListaProdutos = ({arrayProdutos, filtros}) => {
 
     if (!produtos) {
         return (
-            <div className="flex w-[1100px] flex-wrap gap-10">
-                
+            <div className="flex w-[1100px] flex-wrap gap-10"> 
                 {Array.from({ length: 6 }).map((_, index) => (
-                <AnimacaoCardCarregando key={index} />
+                    <AnimacaoCardCarregando key={index} />
                 ))}
             </div>
         );

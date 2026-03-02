@@ -3,6 +3,7 @@ import Login from '../pages/Login'
 import Cadastro from '../pages/Cadastro'
 import PaginaInical from '../pages/PaginaInicial'
 import PaginaProduto from '../pages/PaginaProduto'
+import Carrinho from '../pages/Carrinho'
 import Perfil from '../pages/Perfil'
 
 export default function RoutesApp() {
@@ -35,6 +36,13 @@ export default function RoutesApp() {
                 path="/produto/:id"
                 element={
                     <PaginaProduto />
+                }
+            />
+
+            <Route
+                path='/carrinho'
+                element={
+                    <Carrinho />
                 }
             />
 
