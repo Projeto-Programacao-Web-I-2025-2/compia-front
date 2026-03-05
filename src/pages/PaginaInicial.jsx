@@ -2,7 +2,7 @@ import Header from "../components/hearders/Header"
 import CardProduto from "../components/cards/CardProduto"
 import ModalFiltro from "../components/Filtro"
 import ListaProdutos from "../components/ListaProdutos"
-import { getProduto } from "../services/ProdutoService"
+import { getProdutos } from "../services/produtoService"
 
 export default function PaginaInical() {
     return(
@@ -10,7 +10,7 @@ export default function PaginaInical() {
             <Header />
             <div className="flex justify-center mt-10">
                 <ListaProdutos
-                    arrayProdutos={getProduto}
+                    arrayProdutos={getProdutos}
                     filtros={''}
                 />
                 <ModalFiltro />

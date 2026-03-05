@@ -17,19 +17,10 @@ const ListaProdutos = ({arrayProdutos, filtros}) => {
         carregaProdutos();
     }, [arrayProdutos, filtros])
 
-    const AnimacaoCardCarregando = () => (
-        <div className="flex items-center justify-center bg-[#FFFFFF] border-[#979797] rounded-lg border-1 w-[317px] h-[400px] shadow-xl">
-            <Spin indicator={<LoadingOutlined style={{ fontSize: 70 }} spin />} />
-        </div>
-        
-    );
-
     if (!produtos) {
         return (
-            <div className="flex w-[1100px] flex-wrap gap-10"> 
-                {Array.from({ length: 6 }).map((_, index) => (
-                    <AnimacaoCardCarregando key={index} />
-                ))}
+            <div className="flex w-[1100px] items-center justify-center"> 
+                <LoadingOutlined/>
             </div>
         );
     }

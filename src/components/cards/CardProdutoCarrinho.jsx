@@ -2,12 +2,14 @@ import { LuShoppingCart } from "react-icons/lu";
 import { Link } from "react-router-dom"
 
 const CardProdutoCarrinho = ({produto}) => {
-    const { id, nome, preco} = produto || {};
+    const { id, nome, preco, imagem} = produto || {};
 
     return(
         <Link to={`/produto/${id}`}>
             <div className="flex bg-[#FFFFFF] border-[#979797] rounded-lg border-1 w-[620px] h-[120px] shadow-xl hover:bg-[#f5f5f5]">
-                <div className="fundoImagemProduto bg-[#E5E5E5] w-[100px] h-[100px] ml-3 mt-2"></div>
+                <div className="fundoImagemProduto bg-[#E5E5E5] w-[100px] h-[100px] ml-3 mt-2 items-center justify-center">
+                    <img src={imagem} className="object-contain w-[100px] h-[100px]"></img>
+                </div>
                 <div className="flex flex-1 flex-col mr-5 ml-5 mt-6">
                     <h1 className="nomeProduto line-clamp-1">{nome}</h1>
                     <div className="flex justify-between items-center mt-2">

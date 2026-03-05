@@ -1,6 +1,6 @@
 import Header from "../components/hearders/Header"
 import { LuShoppingCart } from "react-icons/lu";
-import { getProdutoById } from "../services/ProdutoService";
+import { getProdutoById } from "../services/produtoService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import '../index.css'
@@ -45,14 +45,16 @@ export default function PaginaProduto() {
         )
     }
 
-    const { nome, autor, descricao, preco } = produto || {};
+    const { nome, autor, descricao, preco, imagem } = produto || {};
 
     return(
         <div>
             <Header/>
             <div className="flex justify-center mt-9">
                 <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl">
-                    <div className="ml-10 mt-10 rounded-xl border-1 border-[#979797] bg-[#FFFFFF] w-[650px] h-[650px] shadow-xl"></div>
+                    <div className="flex justify-center items-center ml-10 mt-10 rounded-xl border-1 border-[#979797] bg-[#FFFFFF] w-[650px] h-[650px] shadow-xl">
+                        <img src={imagem} className="object-contain w-[650px] h-[650px]"></img>
+                    </div>
                     <div className="flex justify-between flex-col flex-1 text-bold text-white mt-10 ml-10 mr-10 mb-10 w-[600px]">
                         <div>
                             <h1 className="text-2xl line-clamp-3">{nome}</h1>
