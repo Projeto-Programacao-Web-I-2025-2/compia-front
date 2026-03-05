@@ -5,6 +5,8 @@ import PaginaInical from '../pages/PaginaInicial'
 import PaginaProduto from '../pages/PaginaProduto'
 import Carrinho from '../pages/Carrinho'
 import Perfil from '../pages/Perfil'
+import Endereco from '../pages/Endereço'
+import Anunciar from '../pages/Anunciar' 
 
 export default function RoutesApp() {
     return (
@@ -50,6 +52,20 @@ export default function RoutesApp() {
                 path='/perfil'
                 element={
                     <Perfil />
+                }
+            />
+
+            <Route
+                path='/endereco'
+                element={
+                    <Endereco />
+                }
+            />
+
+            <Route
+                path='/anunciar'
+                element={
+                    <Anunciar />
                 }
             />
             
