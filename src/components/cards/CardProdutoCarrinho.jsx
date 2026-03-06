@@ -6,7 +6,7 @@ const CardProdutoCarrinho = ({produto}) => {
 
     return(
         <Link to={`/produto/${id}`}>
-            <div className="flex bg-[#FFFFFF] border-[#979797] rounded-lg border-1 w-[620px] h-[120px] shadow-xl hover:bg-[#f5f5f5]">
+            <div className="flex bg-[#FFFFFF] border-[#979797] rounded-lg border-1 w-[610px] h-[120px] shadow-xl hover:bg-[#f5f5f5]">
                 <div className="fundoImagemProduto bg-[#E5E5E5] w-[100px] h-[100px] ml-3 mt-2 items-center justify-center">
                     <img src={imagem} className="object-contain w-[100px] h-[100px]"></img>
                 </div>

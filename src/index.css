@@ -29,3 +29,7 @@ body {
     background-color: #cbd5e1;
   }
 }
+
+label {
+  font-weight: bold;
+}
