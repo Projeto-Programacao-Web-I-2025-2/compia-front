@@ -1,7 +1,7 @@
 import api from './api';
 
-export const getProdutos = async ({filtros}) => {
-    const response = await api.get('produtos/');
+export const getProdutos = async (filtros) => {
+    const response = await api.get(`produtos/${filtros}`);
     
     return(response.data.results);
 };
@@ -14,10 +14,16 @@ export const getProdutoById = async ({id}) => {
 };
 
 export const createProduto = async (body) => {
-    const responde = await api.post('produtos/', body, {
+    const response = await api.post('produtos/', body, {
         headers: {
             'Content-Type': 'multipart/form-data',
         },});
 
-    return(responde.data);
+    return(response.data);
+}
+
+export const getCategorias = async () => {
+    const response = await api.get('produtos/categorias');
+
+    return(response.data);
 }

@@ -2,6 +2,7 @@ import { useState } from "react";
 import Header from "../components/hearders/Header"
 import { message } from "antd";
 import { createProduto } from "../services/produtoService";
+import SelectCategorias from "../components/utils/SelectCategorias";
 
 export default function Anunciar() {
     const [produto, setProduto] = useState({
@@ -22,6 +23,7 @@ export default function Anunciar() {
 
         if (!nome || !autor || !ano || !idioma || !tipo || !preco || !descricao) {
             message.error("Preencha todos os campos.")
+            return;
         }
 
         const formData = new FormData();
@@ -41,7 +43,7 @@ export default function Anunciar() {
 
         createProduto(formData).then(() => {
             message.success("Produto anunciado com sucesso!");
-            setUsuario({ nome: '',
+            setProduto({ nome: '',
                     autor: '',
                     ano: '',
                     categorias: '',
@@ -80,9 +82,19 @@ export default function Anunciar() {
                             <input className='border-1 border-[#979797] p-1 rounded-sm w-full' placeholder='Nome' onChange={(e) => setProduto({...produto, nome: e.target.value})}></input>
                             <input className='border-1 border-[#979797] p-1 rounded-sm w-full' placeholder='Autor' onChange={(e) => setProduto({...produto, autor: e.target.value})}></input>
                             <input className='border-1 border-[#979797] p-1 rounded-sm w-full' placeholder='Ano' onChange={(e) => setProduto({...produto, ano: e.target.value})}></input>
-                            <input className='border-1 border-[#979797] p-1 rounded-sm w-full' placeholder='Categoria' onChange={(e) => setProduto({...produto, categorias: e.target.value})}></input>
-                            <input className='border-1 border-[#979797] p-1 rounded-sm w-full' placeholder='Idioma' onChange={(e) => setProduto({...produto, idioma: e.target.value})}></input>
-                            <input className='border-1 border-[#979797] p-1 rounded-sm w-full' placeholder='Tipo' onChange={(e) => setProduto({...produto, tipo: e.target.value})}></input>
+                            <SelectCategorias value={produto.categorias} onChange={(id) => setProduto({...produto, categorias: [Number(id)]})}/>
+                            <select className='border-1 border-[#979797] p-1 rounded-sm w-full' value={produto.idioma} onChange={(e) => setProduto({...produto, idioma: e.target.value})}>
+                                <option value={''}>Selecionar Idioma</option>
+                                <option value={'PT'}>Português</option>
+                                <option value={'EN'}>Inglês</option>
+                                <option value={'ES'}>Espanhol</option>
+                                <option value={'OT'}>Outro</option>
+                            </select>
+                            <select className='border-1 border-[#979797] p-1 rounded-sm w-full' onChange={(e) => setProduto({...produto, tipo: e.target.value})}>]
+                                <option value={''}>Selecionar Tipo</option>
+                                <option value={'LIVRO'}>Livro</option>
+                                <option value={'EBOOK'}>E-book</option>
+                            </select>
                             <input className='border-1 border-[#979797] p-1 rounded-sm w-full' placeholder='Preço' onChange={(e) => setProduto({...produto, preco: e.target.value})}></input>
                             <textarea className='border-1 border-[#979797] p-1 rounded-sm w-full h-[300px] self-start' placeholder='Descrição' onChange={(e) => setProduto({...produto, descricao: e.target.value})}></textarea>
                             <p>Imagem:</p>
