@@ -2,7 +2,7 @@ import Logo from "/logo.png"
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { message } from "antd";
-import { register } from "../../services/authService";
+import { register, login } from "../../services/authService";
 
 export default function FormCadastro() {
     const navigate = useNavigate();
@@ -12,11 +12,16 @@ export default function FormCadastro() {
         email: '',
         senha: '',
         confirmarSenha: '',
+        role: 'CLIENTE',
     });
+
+    const handleChange = (e) => {
+        setUsuario({...usuario, role: e.target.checked ? "VENDEDOR" : "CLIENTE"})
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const { nome, email, senha, confirmarSenha} = usuario;
+        const { nome, email, senha, confirmarSenha, role} = usuario;
 
         if (!nome || !email || !senha || !confirmarSenha) {
             message.error("Por favor, preencha todos os campos.");
@@ -25,16 +30,20 @@ export default function FormCadastro() {
 
         if (senha != confirmarSenha) {
             message.error("As senhas não coincidem.");
-            setUsuario({ senha: '', confirmarSenha: '' });            
+            setUsuario({...usuario, senha: '', confirmarSenha: '' });            
             return;
         }
 
-        register({nome, email, senha}).then(() => {
-            message.success("Conta criada com sucesso!");
-            setUsuario({ nome: '', email: '', senha: '', confirmarSenha: '' });
-            navigate("/home");
-        })
-        .catch((err) => {
+        try {
+            await register({nome, email, senha, role});
+
+            await login ({email, senha});
+
+            message.success("Conta criada com sucesso!")
+
+            navigate('/home')
+
+        } catch (err) {
             const erros = err.response?.data;
             
             if (erros) {
@@ -48,7 +57,9 @@ export default function FormCadastro() {
             } else {
                 message.error("Erro desconhecido ao cadastrar.");
             }
-        });
+        }
+
+        setUsuario({ nome: '', email: '', senha: '', confirmarSenha: '', role: 'CLIENTE' });
     }    
 
     return( 
@@ -60,6 +71,10 @@ export default function FormCadastro() {
                 <input className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='E-mail' type='email' value={usuario.email} onChange={e => setUsuario({...usuario, email: e.target.value})}></input>
                 <input className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Senha' type='password' value={usuario.senha} onChange={e => setUsuario({...usuario, senha: e.target.value})}></input>
                 <input className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Confirmar Senha' type='password' value={usuario.confirmarSenha} onChange={e => setUsuario({...usuario, confirmarSenha: e.target.value})}></input>
+                <div className="flex">
+                    <input type='checkbox' onChange={handleChange} checked={usuario.role === "VENDEDOR"}></input>
+                    <p className="ml-2">Conta vendedor</p>
+                </div>
                 <button className='flex justify-center items-center bg-[#F174A7] w-[235px] h-[30px] rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer'>
                     <p className='text-white'>Cadastrar</p>
                 </button>
