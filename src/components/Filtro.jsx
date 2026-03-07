@@ -25,7 +25,7 @@ const ModalFiltro = ({onEnviar}) => {
 
         const paramsObj = {};
 
-        if (ordem) paramsObj.ordem = ordem;
+        if (ordem) paramsObj.ordering = ordem;
         if (idioma) paramsObj.idioma = idioma;
         if (tipo) paramsObj.tipo_produto = tipo;
         
@@ -51,8 +51,8 @@ const ModalFiltro = ({onEnviar}) => {
                 <label>Ordenar por:</label>
                 <select className="border-1 rounded border-[#979797] p-1" value={filtros.ordem} onChange={(e) => setFiltros({...filtros, ordem: e.target.value})}>
                     <option value={''}>Ordem Padrão</option>
-                    <option value={'LIVRO'}>Preço crescente</option>
-                    <option value={'EBOOK'}>Preço decrescente</option>
+                    <option value={'preco'}>Preço crescente</option>
+                    <option value={'-preco'}>Preço decrescente</option>
                 </select>
                 <label>Categoria:</label>
                 <SelectCategorias value={filtros.categorias} onChange={(id) => setFiltros({...filtros, categorias: [Number(id)]})}/>
