@@ -53,7 +53,7 @@ export default function Perfil() {
             <div className="flex justify-center mt-9">
                 <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl">
                     <div className="flex flex-col w-1/2 space-y-5 items-center justify-center">
-                        <h1 className="text-white font-bold text-3xl capitalize">Tipo conta: {dados.role.toLowerCase()}</h1>
+                        {/* <h1 className="text-white font-bold text-3xl capitalize">Tipo conta: {dados.role.toLowerCase()}</h1> */}
                         <FaRegCircleUser size={200} color="white"/>
                         <h2 className="text-white font-bold text-3xl">{dados.nome}</h2>
                         <button onClick={handleLogout} className="flex items-center justify-center border-1 border-[#FFFFFF] w-[200px] bg-[#F174A7] hover:bg-[#d26e97] rounded-xl p-1 text-xl text-white font-bold">

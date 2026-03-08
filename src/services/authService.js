@@ -1,7 +1,12 @@
 import api from "./api";
 
 export const register = async ({nome, email, senha, role}) => {
-    const response = await api.post('auth/users/', {nome, email, password: senha, re_password: senha , role});
+    if(role !== "CLIENTE") {
+        const response = await api.post('vendedores/', {nome, email, password: senha});
+
+        return(response.data)
+    }
+    const response = await api.post('clientes/', {nome, email, password: senha});
 
     return(response.data)        
 }
