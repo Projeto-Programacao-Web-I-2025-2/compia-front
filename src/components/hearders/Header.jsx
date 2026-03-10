@@ -3,9 +3,11 @@ import { LuSearch, LuUser, LuShoppingCart } from "react-icons/lu";
 import { Link, useNavigate } from 'react-router-dom';
 import Imagem from '/logo.png'
 import { isLogged } from "../../services/authService";
+import { useCarrinho } from "../../contexts/CarrinhoContext";
 
 export default function Header() {
     const navigate = useNavigate();
+    const { carrinhoIds } = useCarrinho();
 
     const handlePerfil = async () => {
         const token = localStorage.getItem('auth_token');
@@ -25,16 +27,21 @@ export default function Header() {
     };
 
     return(
-        <div className='flex items-center bg-[#5494D2] w-screen h-[15vh] shadow-2xl'>
-            <div className='flex items-center bg-[#FFFFFF] w-full min-h-[7vh]'>
-                <Link to="/home"><img src={Imagem} className='w-[20vh] h-[5vh] ml-4 cursor-pointer'></img></Link>
-                <div className="flex justify-between mx-auto items-center border-2 p-2 rounded-2xl w-[70vh]">
-                    <input className="outline-none text-xl w-full" placeholder="Pesquisar em CompIA..."></input>
-                    <LuSearch size={30}/>
+        <div className='flex items-center bg-[#5494D2] w-screen h-[100px] shadow-2xl'>
+            <div className='flex items-center bg-[#FFFFFF] w-full h-[50px] justify-between'>
+                <Link to="/home"><img src={Imagem} className='w-[160px] h-[40px] ml-4 cursor-pointer'></img></Link>
+                <div className="flex justify-between  items-center border-2 border-[#979797] p-2 rounded-2xl w-[600px] h-[40px]">
+                    <input className="outline-none text-lg w-full" placeholder="Pesquisar em CompIA..."></input>
+                    <LuSearch size={30} className="hover:bg-[#979797] rounded-xl "/>
                 </div>
                 <div className="flex mr-4 cursor-pointer space-x-4">
-                    <button onClick={handlePerfil}><LuUser size={40}/></button>
-                    <Link to="/carrinho"><LuShoppingCart size={40}/></Link>
+                    <button onClick={handlePerfil}><LuUser size={35}/></button>
+                    <Link to="/carrinho" className="flex">
+                        <LuShoppingCart size={35}/>
+                        <div className="flex bg-[#F174A7] rounded-full text-white font-bold text-sm w-[20px] h-[20px] items-center justify-center">
+                            {carrinhoIds.length}
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>

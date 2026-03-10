@@ -40,8 +40,6 @@ const ModalFiltro = ({onEnviar}) => {
         if(onEnviar) {
             onEnviar(param);
         }
-
-        console.log(param)
     }
 
     return(
