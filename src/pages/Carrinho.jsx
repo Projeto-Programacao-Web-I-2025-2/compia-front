@@ -4,16 +4,17 @@ import Imagem from '/carrinhoVazio.png'
 import { getProdutoById } from "../services/produtoService";
 import CardProdutoCarrinho from "../components/cards/CardProdutoCarrinho";
 import { useCarrinho } from "../contexts/CarrinhoContext";
+import { criaPedido } from "../services/pedidoService";
 
 export default function Carrinho() {
-    const { carrinhoIds, removeProduto } = useCarrinho();
+    const { carrinhoIds, removeProduto, getQtd } = useCarrinho();
     const [produtos, setProdutos] = useState([]);
 
     useEffect(() => {
         const carregaProdutos = async () => {
             if (carrinhoIds.length > 0) {
                 const produtosCompletos = await Promise.all(
-                    carrinhoIds.map(id => getProdutoById({id}))
+                    carrinhoIds.map(([id]) => getProdutoById({id}))
                 );
                 setProdutos(produtosCompletos);
             } else {
@@ -39,9 +40,10 @@ export default function Carrinho() {
         )
     }
 
-    const total = produtos.reduce((sum, prd) => sum + (Number(prd.preco) || 0), 0);
-    const frete = 0;
-    const subTotal = total - frete;
+    const total = produtos.reduce((sum, prd) => {
+        const qtd = getQtd(prd.id);
+        return sum + (Number(prd.preco) || 0) * qtd;
+    }, 0);
 
     return (
         <div>
@@ -51,19 +53,17 @@ export default function Carrinho() {
                     <div className="flex w-1/2 rounded-l-xl bg-[#5494D2] justify-center items-center">
                         <div className="flex flex-col h-[670px] space-y-5 overflow-y-auto items-center ">
                             {produtos.map(prd => (
-                                <CardProdutoCarrinho key={prd.id} produto={prd} onRemove={() => removeProduto(prd.id)}/>
+                                <CardProdutoCarrinho key={prd.id} produto={prd} onRemove={() => removeProduto(prd.id)} onChangeQtd={() => removeProduto(prd.id, qtd)}/>
                             ))}
                         </div>
                     </div>
 
                     <div className="flex flex-col flex-1 justify-center items-center text-[#5494D2] text-4xl font-bold space-y-10">
                         <div className="space-y-10">
-                            <p>Sub-total: {subTotal.toFixed(2)}</p>
-                            <p>Frete: {frete.toFixed(2)}</p>
                             <p>Total: {total.toFixed(2)}</p>
                         </div>
-                        <button className='flex justify-center  items-center bg-[#F174A7] w-[435px] h-[60px] rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer'>
-                                <p className='text-white'>Ir para pagamento</p>
+                        <button className='flex justify-center  items-center bg-[#F174A7] w-[435px] h-[60px] rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer' onClick={() => {criaPedido(carrinhoIds)}}>
+                                <p className='text-white'>Continuar</p>
                         </button>
                     </div>
                 </div>
