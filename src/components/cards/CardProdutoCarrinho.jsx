@@ -2,9 +2,10 @@ import { LuShoppingCart } from "react-icons/lu";
 import { Link } from "react-router-dom"
 import { CiImageOff } from "react-icons/ci";
 import { useCarrinho } from "../../contexts/CarrinhoContext";
+import { message } from "antd";
 
-const CardProdutoCarrinho = ({produto, onRemove, onChangeQtd}) => {
-    const { id, nome, preco, imagem} = produto || {};
+const CardProdutoCarrinho = ({produto, onRemove}) => {
+    const { id, nome, preco, imagem , estoque} = produto || {};
 
     const { changeQtd, getQtd} = useCarrinho();
     
@@ -21,6 +22,11 @@ const CardProdutoCarrinho = ({produto, onRemove, onChangeQtd}) => {
     };
 
     const handleQtd = (e) => {
+        if(e.target.value > estoque) {
+            message.error("Limite do estoque atingido!")
+            return;
+        }
+
         changeQtd(id, e.target.value);
     }
 
