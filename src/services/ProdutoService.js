@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import api from './api';
 
 export const getProdutos = async (filtros) => {
@@ -13,13 +14,34 @@ export const getProdutoById = async ({id}) => {
     return(response.data);
 };
 
-export const createProduto = async (body) => {
-    const response = await api.post('produtos/', body, {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },});
+export const createProduto = async (body, tipo) => {
+    const endpoint = tipo === "LIVRO" ? 'produtos/livros/' : 'produtos/ebooks/';
 
-    return(response.data);
+    try {
+        const response = await api.post(endpoint, body, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        return response.data;
+    } catch (error) {
+        if (error.response && error.response.data) {
+            const data = error.response.data;
+
+            const mensagens = Object.keys(data).map((campo) => {
+                const erroProprio = data[campo];
+                return `${campo}: ${Array.isArray(erroProprio) ? erroProprio.join("; ") : erroProprio}`;
+            });
+
+            const mensagemFinal = mensagens.join(" | ");
+            
+            message.error(mensagemFinal);
+        } else {
+            message.error("Erro de conexão ou erro interno do servidor.");
+        }
+        
+        throw error;
+    }
 }
 
 export const getCategorias = async () => {
