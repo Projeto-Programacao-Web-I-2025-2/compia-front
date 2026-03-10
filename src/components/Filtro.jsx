@@ -27,9 +27,9 @@ const ModalFiltro = ({onEnviar}) => {
 
         if (ordem) paramsObj.ordering = ordem;
         if (idioma) paramsObj.idioma = idioma;
-        if (tipo) paramsObj.tipo_produto = tipo;
+        if (tipo) paramsObj.tipo = tipo;
         
-        if (categorias && categorias.length > 0) {
+        if (categorias && categorias.length > 0 && categorias[0] !== 0) {
             paramsObj.categorias = categorias.join(','); 
         }
 
@@ -65,8 +65,8 @@ const ModalFiltro = ({onEnviar}) => {
                 <label>Tipo:</label>
                 <select className="border-1 rounded border-[#979797] p-1" value={filtros.tipo} onChange={(e) => setFiltros({...filtros, tipo: e.target.value})}>
                     <option value={''}>Todos</option>
-                    <option value={'LIVRO'}>Livro</option>
-                    <option value={'EBOOK'}>E-book</option>
+                    <option value={'livro'}>Livro</option>
+                    <option value={'ebook'}>E-book</option>
                 </select>
             </div>
             <div className="flex space-x-16 mt-20">
