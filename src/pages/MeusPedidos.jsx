@@ -102,9 +102,9 @@ export default function MeusPedidos() {
                                     <p>Frete: {selectedPedido.frete ? selectedPedido.frete : (0).toFixed(2)}</p>
                                     <p>Total: {selectedPedido.total}</p>
                                 </div>
-                                <div>
+                                <div className="flex flex-col justify-center items-center ">
+                                    Produtos:
                                     <div className="flex flex-col h-[300px] space-y-5 overflow-y-auto items-center ">
-                                        Produtos:
                                         {produtosDetalhes.map(pd => (
                                             <div key={pd.id} className="flex-shrink-0">
                                                 <CardProdutoPedido key={pd.id} produto={{...pd, estoque: pd.quantidade}}/>
