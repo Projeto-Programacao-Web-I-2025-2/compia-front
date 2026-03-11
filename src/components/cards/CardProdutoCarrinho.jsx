@@ -42,7 +42,7 @@ const CardProdutoCarrinho = ({produto, onRemove}) => {
                         <h2>R$ {preco}</h2>
                         <div className="flex space-x-2">
                             <input value={quantidade} className="qtd w-[45px] border-1 rounded border-[#979797]" type="number" onClick={(e) => {e.stopPropagation(); e.preventDefault();}} onChange={handleQtd}></input>
-                            <button className="flex items-center w-[33px] justify-center rounded-full p-1 bg-[#5494D2] border-1 border-[#979797] hover:bg-[#31567A] text-white cursor-pointer" onClick={handleRemover}>
+                            <button className="flex items-center w-[33px] justify-center rounded-full p-1 bg-[#F174A7] hover:bg-[#d26e97] border-1 border-[#979797] text-white cursor-pointer" onClick={handleRemover}>
                                     X
                             </button>
                         </div>

@@ -27,7 +27,7 @@ const ListaProdutos = ({arrayProdutos, filtros}) => {
     if (produtos.length === 0) {
         return (
             <div className="flex w-[1100px] items-center justify-center text-3xl font-bold text-[#5494D2]"> 
-                Nenhum livro disponível
+                Nenhum livro encontrado!
             </div>
         );
     }

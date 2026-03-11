@@ -1,13 +1,20 @@
 import { LuShoppingCart } from "react-icons/lu";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { CiImageOff, CiEdit} from "react-icons/ci";
 import { useCarrinho } from "../../contexts/CarrinhoContext";
 
 const CardProduto = ({produto}) => {
     const { id, nome, preco , imagem} = produto || {};
     const { addProduto } = useCarrinho();
+    const navigate = useNavigate();
 
-    const roleCliente = localStorage.getItem('role');
+    const roleUser = localStorage.getItem('role');
+
+    const handleEdit = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        navigate(`/editar/${id}`);
+    };
  
     return(
         <Link to={`/produto/${id}`}>
@@ -19,10 +26,10 @@ const CardProduto = ({produto}) => {
                     <h1 className="nomeProduto truncate">{nome}</h1>
                     <div className="flex justify-between items-center mt-2">
                         <h2>R$ {preco}</h2>
-                        {roleCliente === "VENDEDOR" ? 
-                            <button className="flex items-center justify-center rounded-xl p-1 bg-[#5494D2] border-1 border-[#979797] hover:bg-[#31567A] text-white cursor-pointer" onClick={(e) => {e.preventDefault(); e.stopPropagation(); addProduto(id)}}>
+                        {roleUser === "VENDEDOR" ? 
+                            <button className="flex items-center justify-center rounded-xl p-1 bg-[#5494D2] border-1 border-[#979797] hover:bg-[#31567A] text-white cursor-pointer" onClick={handleEdit}>
                                 Editar
-                                <CiEdit color="white"/>
+                                <CiEdit color="white" size={23}/>
                             </button>
                             :
                             <button className="flex items-center justify-center rounded-xl p-1 bg-[#5494D2] border-1 border-[#979797] hover:bg-[#31567A] text-white cursor-pointer" onClick={(e) => {e.preventDefault(); e.stopPropagation(); addProduto(id)}}>

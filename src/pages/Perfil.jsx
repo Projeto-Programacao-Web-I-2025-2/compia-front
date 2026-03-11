@@ -6,11 +6,13 @@ import { message } from "antd";
 import { Link } from "react-router-dom";
 import { getMe } from "../services/authService";
 import { useEffect, useState } from "react";
-import {Spin} from "antd";
+import { LoadingOutlined } from '@ant-design/icons';
+import HeaderVendedor from "../components/hearders/HeaderVendedor";
 
 export default function Perfil() {
     const [dados, setDados] = useState(null);
     const [carregando, setCarregando] = useState(true);
+    const roleUser = localStorage.getItem('role');
 
     const navigate = useNavigate();
 
@@ -37,39 +39,43 @@ export default function Perfil() {
     }, []);
 
     if (carregando) {
-        return(<div>
-            <Header/>
-            <div className="flex justify-center mt-9">
-                <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl">
-                    <Spin></Spin>
+        return(
+            <div>
+                {roleUser === "CLIENTE" ? <Header/> : <HeaderVendedor/>}
+                <div className="flex justify-center mt-9">
+                    <div className="flex bg-[#FFFFFF] w-[1365px] h-[730px] rounded-xl shadow-2xl justify-center items-center text-[#5494D2]">
+                        <LoadingOutlined style={{ fontSize: 60 }}/>
+                    </div>
                 </div>
             </div>
-        </div>)
+        )
     }
 
     return(
         <div>
-            <Header/>
+            {roleUser === "CLIENTE" ? <Header/> : <HeaderVendedor/>}
             <div className="flex justify-center mt-9">
-                <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl">
+                <div className="flex flex-col bg-[#FFFFFF] w-[1365px] h-[730px] rounded-xl shadow-2xl items-center justify-center font-bold text-xl text-white">
                     <div className="flex flex-col w-1/2 space-y-5 items-center justify-center">
-                        {/* <h1 className="text-white font-bold text-3xl capitalize">Tipo conta: {dados.role.toLowerCase()}</h1> */}
-                        <FaRegCircleUser size={200} color="white"/>
-                        <h2 className="text-white font-bold text-3xl">{dados.nome}</h2>
-                        <button onClick={handleLogout} className="flex items-center justify-center border-1 border-[#FFFFFF] w-[200px] bg-[#F174A7] hover:bg-[#d26e97] rounded-xl p-1 text-xl text-white font-bold">
+                        <h1 className="text-[#5494D2] font-bold text-3xl capitalize">Tipo conta: {roleUser.toLowerCase()}</h1>
+                        <FaRegCircleUser size={200} color="#5494D2"/>
+                        <h2 className="text-[#5494D2] font-bold text-3xl">{dados.nome}</h2>
+                        {roleUser === "CLIENTE" ? 
+                            <Link to={"/meus-pedidos"} className="flex bg-[#5494D2] border-[#979797] rounded-xl border-1 w-[400px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
+                                Acompanhar Pedidos
+                            </Link>
+                            :
+                            <Link to={"/minhas-vendas"} className="flex bg-[#5494D2] border-[#979797] rounded-xl border-1 w-[400px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
+                                Minhas Vendas
+                            </Link>
+                        }
+                        
+                        <Link to={"/endereco"} className="flex bg-[#5494D2] border-[#979797] rounded-xl border-1 w-[400px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
+                            Endereço
+                        </Link>
+                        <button onClick={handleLogout} className="flex items-center justify-center border-1 border-[#979797] w-[400px] h-[50px] bg-[#F174A7] hover:bg-[#d26e97] rounded-xl  font-bold">
                             Logout
                         </button>
-                    </div>
-                    <div className="flex flex-1 flex-col space-y-5 items-center justify-center text-white font-bold text-xl bg-[#FFFFFF] rounded-r-xl">
-                        <Link to={"/meus-pedidos"} className="flex bg-[#5494D2] border-[#979797] rounded-lg border-1 w-[620px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
-                            Acompanhar Pedidos
-                        </Link>
-                        <Link to={"/endereco"} className="flex bg-[#5494D2] border-[#979797] rounded-lg border-1 w-[620px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
-                            Endereço / Informações
-                        </Link>
-                        <Link to={"/anunciar"} className="flex bg-[#5494D2] border-[#979797] rounded-lg border-1 w-[620px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
-                            Anunciar
-                        </Link>
                     </div>
                 </div>
             </div>

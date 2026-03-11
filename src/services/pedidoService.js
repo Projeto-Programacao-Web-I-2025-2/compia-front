@@ -17,8 +17,6 @@ export const criaPedido = async (carrinhosIds) => {
 export const getMeusPedidos = async () => {
      try {
         const response = await api.get('/pedidos/')
-
-        console.log(response.data.results)
         return response.data.results;
     } catch (err) {
         console.log(err.data);

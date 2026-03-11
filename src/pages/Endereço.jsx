@@ -1,12 +1,15 @@
 import Header from "../components/hearders/Header"
+import HeaderVendedor from "../components/hearders/HeaderVendedor";
 import imagem from "/mapa.png"
 import { buscaCep, cadastrarEndereco, enderecoUser } from "../services/enderecoService";
 import { useEffect, useState } from "react";
 import { message } from "antd";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { IoIosArrowBack } from "react-icons/io";
 
 export default function Endereco() {
     const navigate = useNavigate();
+    const roleUser = localStorage.getItem('role');
 
     const [endereco, setEndereco] = useState({
         rua : '',
@@ -68,14 +71,12 @@ export default function Endereco() {
 
     return(
         <div>
-            <Header/>
+            {roleUser === "CLIENTE" ? <Header/> : <HeaderVendedor/>}
             <div className="flex justify-center mt-9">
                 <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl">
-                    <div className="flex w-1/2 justify-center items-center">
+                    <div className="flex flex-col w-1/2 justify-center items-center space-y-3">
+                        <p className="text-white font-bold text-xl">Endereço</p>
                         <form onSubmit={handleSubmit} className="flex flex-col bg-white p-10 rounded-xl items-center justify-center space-y-2">
-                            {/* <input className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Nome Completo' onChange={() => {}}></input>
-                            <input className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='CPF' onChange={() => {}}></input>
-                            <input className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Celular' onChange={() => {}}></input> */}
                             <input defaultValue={endereco.cep} className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='CEP' onChange={(e) => handleCep(e.target.value)}></input>
                             <input defaultValue={endereco.estado} id="es" className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Estado' ></input>
                             <input defaultValue={endereco.cidade} id="cd" className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Cidade'></input>

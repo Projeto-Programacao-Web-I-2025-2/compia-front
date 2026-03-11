@@ -31,6 +31,22 @@ export default function MeusPedidos() {
         carregaPedidos();
     }, [])
 
+    if(pedidos.length === 0 || !pedidos) {
+        return(
+            <div>
+                <Header/>
+                <div className="flex justify-center mt-9">
+                    <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl justify-end">
+                        <div className="flex w-1/2 bg-white roundel-xl items-center justify-center font-bold text-2xl text-[#5494D2]">
+                            <p>Não há pedidos!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+
     const handleDetalhar = async (pedido) => {
         setSelectedPedido(pedido);
         if (pedido.itens && Array.isArray(pedido.itens)) {

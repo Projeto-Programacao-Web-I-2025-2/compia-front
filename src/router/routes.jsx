@@ -8,6 +8,7 @@ import Perfil from '../pages/Perfil'
 import Endereco from '../pages/Endereço'
 import Anunciar from '../pages/Anunciar' 
 import MeusPedidos from '../pages/MeusPedidos'
+import EditaLivro from '../pages/EditaLivro'
 
 export default function RoutesApp() {
     return (
@@ -74,6 +75,13 @@ export default function RoutesApp() {
                 path='/meus-pedidos'
                 element={
                     <MeusPedidos />
+                }
+            />
+
+            <Route
+                path="/editar/:id"
+                element={
+                    <EditaLivro />
                 }
             />
             
