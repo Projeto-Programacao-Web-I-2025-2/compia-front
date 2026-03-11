@@ -12,4 +12,16 @@ export const criaPedido = async (carrinhosIds) => {
     } catch (err) {
         console.log(err.data);
     }
-} 
+}
+
+export const getMeusPedidos = async () => {
+     try {
+        const response = await api.get('/pedidos/')
+
+        console.log(response.data.results)
+        return response.data.results;
+    } catch (err) {
+        console.log(err.data);
+    }
+}
+

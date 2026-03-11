@@ -53,7 +53,7 @@ export default function Carrinho() {
                     <div className="flex w-1/2 rounded-l-xl bg-[#5494D2] justify-center items-center">
                         <div className="flex flex-col h-[670px] space-y-5 overflow-y-auto items-center ">
                             {produtos.map(prd => (
-                                <CardProdutoCarrinho key={prd.id} produto={prd} onRemove={() => removeProduto(prd.id)} onChangeQtd={() => removeProduto(prd.id, qtd)}/>
+                                <CardProdutoCarrinho key={prd.id} produto={prd} onRemove={() => removeProduto(prd.id)}/>
                             ))}
                         </div>
                     </div>

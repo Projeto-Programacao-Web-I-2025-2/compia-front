@@ -61,9 +61,9 @@ export default function Perfil() {
                         </button>
                     </div>
                     <div className="flex flex-1 flex-col space-y-5 items-center justify-center text-white font-bold text-xl bg-[#FFFFFF] rounded-r-xl">
-                        <div className="flex bg-[#5494D2] border-[#979797] rounded-lg border-1 w-[620px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
+                        <Link to={"/meus-pedidos"} className="flex bg-[#5494D2] border-[#979797] rounded-lg border-1 w-[620px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
                             Acompanhar Pedidos
-                        </div>
+                        </Link>
                         <Link to={"/endereco"} className="flex bg-[#5494D2] border-[#979797] rounded-lg border-1 w-[620px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
                             Endereço / Informações
                         </Link>

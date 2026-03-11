@@ -7,6 +7,7 @@ import Carrinho from '../pages/Carrinho'
 import Perfil from '../pages/Perfil'
 import Endereco from '../pages/Endereço'
 import Anunciar from '../pages/Anunciar' 
+import MeusPedidos from '../pages/MeusPedidos'
 
 export default function RoutesApp() {
     return (
@@ -66,6 +67,13 @@ export default function RoutesApp() {
                 path='/anunciar'
                 element={
                     <Anunciar />
+                }
+            />
+
+            <Route
+                path='/meus-pedidos'
+                element={
+                    <MeusPedidos />
                 }
             />
             
