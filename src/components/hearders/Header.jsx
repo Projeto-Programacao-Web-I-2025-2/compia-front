@@ -8,6 +8,7 @@ import { useCarrinho } from "../../contexts/CarrinhoContext";
 export default function Header() {
     const navigate = useNavigate();
     const { carrinhoIds } = useCarrinho();
+    const roleCliente = localStorage.getItem('role');
 
     const handlePerfil = async () => {
         const token = localStorage.getItem('auth_token');
@@ -36,12 +37,15 @@ export default function Header() {
                 </div>
                 <div className="flex mr-4 cursor-pointer space-x-4">
                     <button onClick={handlePerfil}><LuUser size={35}/></button>
-                    <Link to="/carrinho" className="flex">
-                        <LuShoppingCart size={35}/>
-                        <div className="flex bg-[#F174A7] rounded-full text-white font-bold text-sm w-[20px] h-[20px] items-center justify-center">
-                            {carrinhoIds.length}
-                        </div>
-                    </Link>
+                    { roleCliente === "CLIENTE" || !roleCliente ?
+                        <Link to="/carrinho" className="flex">
+                            <LuShoppingCart size={35}/>
+                            <div className="flex bg-[#F174A7] rounded-full text-white font-bold text-sm w-[20px] h-[20px] items-center justify-center">
+                                {carrinhoIds.length}
+                            </div>
+                        </Link>
+                        : <></>
+                    }
                 </div>
             </div>
         </div>

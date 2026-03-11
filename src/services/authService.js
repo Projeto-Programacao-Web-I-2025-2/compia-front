@@ -19,6 +19,10 @@ export const login = async ({ email, senha }) => {
     
     const token = response.data.auth_token;
     localStorage.setItem('auth_token', token);
+
+    const me = await api.get('auth/users/me')
+
+    localStorage.setItem('role', me.data.role);
     
     return response.data;
 };
@@ -34,6 +38,8 @@ export const logout = async () => {
         await api.post('auth/token/logout/'); 
     } finally {
         localStorage.removeItem('auth_token');
+        localStorage.removeItem('role');
+        localStorage.removeItem('carrinhoIds');
     }
 };
 

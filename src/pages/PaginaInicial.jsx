@@ -1,25 +1,31 @@
 import Header from "../components/hearders/Header"
-import CardProduto from "../components/cards/CardProduto"
 import ModalFiltro from "../components/Filtro"
 import ListaProdutos from "../components/ListaProdutos"
-import { getProdutos } from "../services/produtoService"
-import { useEffect, useState } from "react"
+import { getProdutos, getProdutosVendedor } from "../services/produtoService"
+import { useState } from "react"
 
 export default function PaginaInical() {
     const [filtros, setFiltros] = useState("");
-
-    useEffect
+    const roleCliente = localStorage.getItem('role');
 
     return(
         <div className="">
             <Header />
-            <div className="flex justify-center mt-10">
-                <ListaProdutos
-                    arrayProdutos={getProdutos}
-                    filtros={filtros}
-                />
-                <ModalFiltro onEnviar={setFiltros}/>
-            </div>
+            {roleCliente === "CLIENTE" || !roleCliente ? 
+                <div className="flex justify-center mt-10">
+                    <ListaProdutos
+                        arrayProdutos={getProdutos}
+                        filtros={filtros}
+                    />
+                    <ModalFiltro onEnviar={setFiltros}/>
+                </div> 
+                :
+                <div className="flex justify-center mt-10">
+                    <ListaProdutos
+                            arrayProdutos={getProdutosVendedor}
+                    />
+                </div>
+            }
         </div>
     )
 }
