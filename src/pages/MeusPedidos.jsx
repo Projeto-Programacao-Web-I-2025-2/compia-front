@@ -64,7 +64,7 @@ export default function MeusPedidos() {
 
     const detalhar = (status) => {
         const niveis = {
-            "PAGAMENTO_CONFIRMADO": 1,
+            "CONFIRMADO": 1,
             "ENVIADO": 2,
             "ENTREGUE": 3
         };

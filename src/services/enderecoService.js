@@ -22,7 +22,7 @@ export const enderecoUser = async () => {
 
     try {
         if (user.data.role === "CLIENTE") {
-            const response = await api.get('/vendedores/me/');
+            const response = await api.get('/clientes/me/');
             return response.data.endereco;
         } 
 
@@ -38,7 +38,7 @@ export const cadastrarEndereco = async ({rua, numero, bairro, cidade, estado, co
     const user = await api.get("/auth/users/me/");
 
     try {
-        if (user.data.rolle === "CLIENTE") {
+        if (user.data.role === "CLIENTE") {
             const response = await api.patch('clientes/me/' , {endereco: {rua, numero, bairro, cidade, estado, complemento, cep}});
             return response.data;
         }

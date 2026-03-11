@@ -6,8 +6,10 @@ import { useParams, useNavigate } from "react-router";
 import '../index.css'
 import { CiImageOff, CiEdit} from "react-icons/ci";
 import HeaderVendedor from "../components/hearders/HeaderVendedor";
+import { useCarrinho } from "../contexts/CarrinhoContext";
 
 export default function PaginaProduto() {
+    const { addProduto } = useCarrinho();
     const navigate = useNavigate();
     const {id} = useParams();
     const [produto, setProduto ] = useState(null);
@@ -27,7 +29,7 @@ export default function PaginaProduto() {
     if (!produto) {
          return(
             <div>
-                {roleUser === "CLIENTE" ? <Header/> : <HeaderVendedor/>}
+                {roleUser === "CLIENTE" || !roleUser ? <Header/> : <HeaderVendedor/>}
                 <div className="flex justify-center mt-9">
                     <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl">
                         <div className="ml-10 mt-10 rounded-xl border-1 border-[#979797] bg-[#FFFFFF] w-[650px] h-[650px] shadow-xl animate-[pulse_0.9s_ease-in-out_infinite]"></div>
@@ -53,7 +55,7 @@ export default function PaginaProduto() {
 
     return(
         <div>
-            {roleUser === "CLIENTE" ? <Header/> : <HeaderVendedor/>}
+            {roleUser === "CLIENTE" || !roleUser ? <Header/> : <HeaderVendedor/>}
             <div className="flex justify-center mt-9">
                 <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl">
                     <div className="flex justify-center items-center ml-10 mt-10 rounded-xl border-1 border-[#979797] bg-[#FFFFFF] w-[650px] h-[650px] shadow-xl">
@@ -70,7 +72,7 @@ export default function PaginaProduto() {
                         <div className="flex items-center justify-between">
                             <h3 className="text-4xl">R$ {preco}</h3>
                             {roleUser == "CLIENTE" || !roleUser ?
-                                <button className="flex items-center border-1 border-[#FFFFFF] bg-[#F174A7] hover:bg-[#d26e97] rounded-xl p-2 text-xl">
+                                <button onClick={addProduto(id)} className="flex items-center border-1 border-[#FFFFFF] bg-[#F174A7] hover:bg-[#d26e97] rounded-xl p-2 text-xl">
                                     Adicionar ao carrinho
                                     <LuShoppingCart/>
                                 </button>
