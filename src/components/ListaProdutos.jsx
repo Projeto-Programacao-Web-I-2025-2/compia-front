@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import CardProduto from "./cards/CardProduto";
 import { LoadingOutlined } from '@ant-design/icons';
-import { Spin } from "antd";
 
 const ListaProdutos = ({arrayProdutos, filtros}) => {
     const [ produtos, setProdutos ] = useState(null);
@@ -19,8 +18,16 @@ const ListaProdutos = ({arrayProdutos, filtros}) => {
 
     if (!produtos) {
         return (
-            <div className="flex w-[1100px] items-center justify-center"> 
-                <LoadingOutlined/>
+            <div className="flex w-[1100px] items-center justify-center  text-[#5494D2]"> 
+                <LoadingOutlined style={{ fontSize: 60 }}/>
+            </div>
+        );
+    }
+
+    if (produtos.length === 0) {
+        return (
+            <div className="flex w-[1100px] items-center justify-center text-3xl font-bold text-[#5494D2]"> 
+                Nenhum livro disponível
             </div>
         );
     }

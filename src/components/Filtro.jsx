@@ -43,7 +43,7 @@ const ModalFiltro = ({onEnviar}) => {
     }
 
     return(
-        <form className="flex flex-col bg-[#FFFFFF] border-1 border-[#979797] rounded-lg min-w-[310px] h-[510px] items-center shadow-xl" onSubmit={handleSubmit}>
+        <form className="flex flex-col bg-[#FFFFFF] border-1 border-[#979797] rounded-lg min-w-[310px] h-[480px] items-center shadow-xl" onSubmit={handleSubmit}>
             <h1 className="text-[#314C91] text-xl mt-4 font-bold">Filtro</h1>
             <div className="flex flex-col text-md mt-6 space-y-2 w-[240px]">
                 <label>Ordenar por:</label>
