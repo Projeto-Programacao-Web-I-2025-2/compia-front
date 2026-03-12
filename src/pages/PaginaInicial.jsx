@@ -8,16 +8,29 @@ import { useState } from "react"
 export default function PaginaInical() {
     const [filtros, setFiltros] = useState("");
     const roleUser = localStorage.getItem('role');
+    const [termoPesquisa, setTermoPesquisa] = useState("");
+
+    const renderizarProdutos = () => {
+        let params = filtros || "?";
+        
+        const separador = params === "?" ? "" : "&";
+        
+        if (termoPesquisa) {
+            params += `${separador}search=${encodeURIComponent(termoPesquisa)}`;
+        }
+        
+        return params === "?" ? "" : params;
+    };
 
     return(
         <div>
             {roleUser === "CLIENTE" || !roleUser ?
                 <div>
-                    <Header />
+                    <Header onPesquisar={setTermoPesquisa} />
                     <div className="flex justify-center mt-10">
                         <ListaProdutos
                             arrayProdutos={getProdutos}
-                            filtros={filtros}
+                            filtros={renderizarProdutos()}
                         />
                         <ModalFiltro onEnviar={setFiltros}/>
                     </div> 

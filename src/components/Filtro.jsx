@@ -10,12 +10,14 @@ const ModalFiltro = ({onEnviar}) => {
     })
 
     const handleRemover = () => {
-        setFiltros({
+        const limpo = {
             ordem: '',
-            categorias: '',
+            categorias: [],
             idioma: '',
             tipo: ''
-        })
+        };
+        setFiltros(limpo);
+        onEnviar("");
     }
 
     const handleSubmit = (e) => {
