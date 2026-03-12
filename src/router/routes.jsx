@@ -9,6 +9,7 @@ import Endereco from '../pages/Endereço'
 import Anunciar from '../pages/Anunciar' 
 import MeusPedidos from '../pages/MeusPedidos'
 import EditaLivro from '../pages/EditaLivro'
+import MinhasVendas from '../pages/MinhaVendas'
 
 export default function RoutesApp() {
     return (
@@ -82,6 +83,13 @@ export default function RoutesApp() {
                 path="/editar/:id"
                 element={
                     <EditaLivro />
+                }
+            />
+
+            <Route
+                path="/minhas-vendas"
+                element={
+                    <MinhasVendas />
                 }
             />
             

@@ -15,8 +15,6 @@ export const getProdutoById = async ({id}) => {
 export const editProduto = async (body, tipo, {id}) => {
     const endpoint = tipo === "livro" ? `produtos/livros/${id}/` : `produtos/ebooks/${id}`;
 
-    console.log(body)
-
     try {
         const response = await api.patch(endpoint, body, {
             headers: {
