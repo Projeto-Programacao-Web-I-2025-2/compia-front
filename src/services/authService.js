@@ -20,9 +20,14 @@ export const login = async ({ email, senha }) => {
     const token = response.data.auth_token;
     localStorage.setItem('auth_token', token);
 
-    const me = await api.get('auth/users/me')
+    try {
+        const me = await api.get('vendedores/me')
 
-    localStorage.setItem('role', me.data.role);
+        localStorage.setItem('role', "VENDEDOR");
+    }
+    catch (error) {
+        localStorage.setItem('role', "CLIENTE");
+    }
     
     return response.data;
 };
