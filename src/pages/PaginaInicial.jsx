@@ -24,7 +24,17 @@ export default function PaginaInical() {
 
     return(
         <div>
-            {roleUser === "CLIENTE" || !roleUser ?
+            {roleUser === "VENDEDOR" ?
+                <div>
+                    <HeaderVendedor/>
+                    <div className="flex flex-col items-center mt-10 space-y-10">
+                        <p className="font-bold text-2xl text-[#5494D2]">Meus produtos:</p>
+                        <ListaProdutos
+                                arrayProdutos={getProdutosVendedor}
+                        />
+                    </div>
+                </div>
+                :
                 <div>
                     <Header onPesquisar={setTermoPesquisa} />
                     <div className="flex justify-center mt-10">
@@ -34,16 +44,6 @@ export default function PaginaInical() {
                         />
                         <ModalFiltro onEnviar={setFiltros}/>
                     </div> 
-                </div>
-                :
-                <div    >
-                    <HeaderVendedor/>
-                    <div className="flex flex-col items-center mt-10 space-y-10">
-                        <p className="font-bold text-2xl text-[#5494D2]">Meus produtos:</p>
-                        <ListaProdutos
-                                arrayProdutos={getProdutosVendedor}
-                        />
-                    </div>
                 </div>
             }
         </div>
