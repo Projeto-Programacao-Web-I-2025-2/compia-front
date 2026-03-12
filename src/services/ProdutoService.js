@@ -3,7 +3,7 @@ import api from './api';
 
 export const getProdutos = async (filtros) => {
     const response = await api.get(`produtos/${filtros}`);
-    return(response.data.results);
+    return(response.data);
 };
 
 export const getProdutoById = async ({id}) => {
