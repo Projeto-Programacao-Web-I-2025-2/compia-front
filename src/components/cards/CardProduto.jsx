@@ -4,7 +4,7 @@ import { CiImageOff, CiEdit} from "react-icons/ci";
 import { useCarrinho } from "../../contexts/CarrinhoContext";
 
 const CardProduto = ({produto}) => {
-    const { id, nome, preco , imagem} = produto || {};
+    const { id, nome, preco , imagem, estoque, tipo} = produto || {};
     const { addProduto } = useCarrinho();
     const navigate = useNavigate();
 
@@ -31,11 +31,16 @@ const CardProduto = ({produto}) => {
                                 Editar
                                 <CiEdit color="white" size={23}/>
                             </button>
-                            :
-                            <button className="flex items-center justify-center rounded-xl p-1 bg-[#5494D2] border-1 border-[#979797] hover:bg-[#31567A] text-white cursor-pointer" onClick={(e) => {e.preventDefault(); e.stopPropagation(); addProduto(id)}}>
-                                Comprar
-                                <LuShoppingCart color="white"/>
-                            </button>
+                            :   (estoque > 0 || tipo === "ebook" ?
+                                <button className="flex items-center justify-center rounded-xl p-1 bg-[#5494D2] border-1 border-[#979797] hover:bg-[#31567A] text-white cursor-pointer" onClick={(e) => {e.preventDefault(); e.stopPropagation(); addProduto(id)}}>
+                                    Comprar
+                                    <LuShoppingCart color="white"/>
+                                </button>
+                                :
+                                <div className="bg-[#F174A7] flex items-center justify-center rounded-xl p-1 border-1 border-[#979797] text-white">
+                                    Indisponível
+                                </div>
+                            )
                         }
                     </div>
                 </div>

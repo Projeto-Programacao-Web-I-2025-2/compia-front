@@ -51,7 +51,7 @@ export default function PaginaProduto() {
         )
     }
 
-    const { nome, autor, descricao, preco, imagem } = produto || {};
+    const { nome, autor, descricao, preco, imagem, estoque } = produto || {};
 
     return(
         <div>
@@ -71,11 +71,16 @@ export default function PaginaProduto() {
                         </div>
                         <div className="flex items-center justify-between">
                             <h3 className="text-4xl">R$ {preco}</h3>
-                            {roleUser == "CLIENTE" || !roleUser ?
+                            {roleUser == "CLIENTE" || !roleUser ? (estoque > 0 ?
                                 <button onClick={(e) => {e.stopPropagation(); e.preventDefault(); addProduto(Number(id));}} className="flex items-center border-1 border-[#FFFFFF] bg-[#F174A7] hover:bg-[#d26e97] rounded-xl p-2 text-xl">
                                     Adicionar ao carrinho
                                     <LuShoppingCart/>
                                 </button>
+                                :
+                                <div className="flex items-center border-1 border-[#FFFFFF] bg-[#F174A7] rounded-xl p-2 text-xl">
+                                    Indisponível
+                                </div>
+                            )
                                 :
                                 <button onClick={(e) => {e.stopPropagation(); e.preventDefault(); navigate(`/editar/${id}`);}} className="flex items-center border-1 border-[#FFFFFF] bg-[#F174A7] hover:bg-[#d26e97] rounded-xl p-2 text-xl">
                                     Editar produto
