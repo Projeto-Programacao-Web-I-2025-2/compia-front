@@ -72,7 +72,7 @@ export default function PaginaProduto() {
                         <div className="flex items-center justify-between">
                             <h3 className="text-4xl">R$ {preco}</h3>
                             {roleUser == "CLIENTE" || !roleUser ?
-                                <button onClick={addProduto(id)} className="flex items-center border-1 border-[#FFFFFF] bg-[#F174A7] hover:bg-[#d26e97] rounded-xl p-2 text-xl">
+                                <button onClick={(e) => {e.stopPropagation(); e.preventDefault(); addProduto(Number(id));}} className="flex items-center border-1 border-[#FFFFFF] bg-[#F174A7] hover:bg-[#d26e97] rounded-xl p-2 text-xl">
                                     Adicionar ao carrinho
                                     <LuShoppingCart/>
                                 </button>
