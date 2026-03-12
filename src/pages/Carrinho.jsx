@@ -5,10 +5,12 @@ import { getProdutoById } from "../services/produtoService";
 import CardProdutoCarrinho from "../components/cards/CardProdutoCarrinho";
 import { useCarrinho } from "../contexts/CarrinhoContext";
 import { criaPedido } from "../services/pedidoService";
+import { message } from "antd";
 
 export default function Carrinho() {
     const { carrinhoIds, removeProduto, getQtd } = useCarrinho();
     const [produtos, setProdutos] = useState([]);
+    const { clearCarrinho } = useCarrinho();
 
     useEffect(() => {
         const carregaProdutos = async () => {
@@ -40,6 +42,15 @@ export default function Carrinho() {
         )
     }
 
+    const handleCriarPedido = async () => {
+        const response = await criaPedido(carrinhoIds);
+
+        if (response) {
+            message.success("Pedido criado com sucesso!");
+            clearCarrinho();
+        }
+    }
+
     const total = produtos.reduce((sum, prd) => {
         const qtd = getQtd(prd.id);
         return sum + (Number(prd.preco) || 0) * qtd;
@@ -50,19 +61,22 @@ export default function Carrinho() {
             <Header/>
             <div className="flex justify-center mt-9">
                 <div className="flex bg-[#FFFFFF] w-[1365px] h-[730px] rounded-xl shadow-2xl">
-                    <div className="flex w-1/2 rounded-l-xl bg-[#5494D2] justify-center items-center">
-                        <div className="flex flex-col h-[670px] space-y-5 overflow-y-auto items-center ">
+                    <div className="flex w-1/2 flex-col rounded-l-xl bg-[#5494D2] justify-center items-center space-y-2">
+                        <div className="flex flex-col h-[600px] space-y-5 overflow-y-auto items-center mt-7 ">
                             {produtos.map(prd => (
                                 <CardProdutoCarrinho key={prd.id} produto={prd} onRemove={() => removeProduto(prd.id)}/>
                             ))}
                         </div>
+                        <button className='flex justify-center items-center bg-[#F174A7] border-1 border-white p-2 rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer' onClick={(e) => {e.stopPropagation();  e.preventDefault(); clearCarrinho();}}>
+                                <p className='text-white'>Limpar Carrinho</p>
+                        </button>
                     </div>
 
                     <div className="flex flex-col flex-1 justify-center items-center text-[#5494D2] text-4xl font-bold space-y-10">
                         <div className="space-y-10">
                             <p>Total: {total.toFixed(2)}</p>
                         </div>
-                        <button className='flex justify-center  items-center bg-[#F174A7] w-[435px] h-[60px] rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer' onClick={() => {criaPedido(carrinhoIds)}}>
+                        <button className='flex justify-center  items-center bg-[#F174A7] w-[435px] h-[60px] rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer' onClick={handleCriarPedido}>
                                 <p className='text-white'>Continuar</p>
                         </button>
                     </div>

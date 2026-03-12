@@ -48,8 +48,10 @@ export const CarrinhoProvider = ({ children }) => {
         return item ? item[1] : 1;
     }
 
+    const clearCarrinho = () => setCarrinhoIds([]);
+
     return (
-        <CarrinhoContext.Provider value={{ carrinhoIds, addProduto, removeProduto, changeQtd, getQtd }}>
+        <CarrinhoContext.Provider value={{ carrinhoIds, addProduto, removeProduto, changeQtd, getQtd, clearCarrinho }}>
             {children}
         </CarrinhoContext.Provider>
     );

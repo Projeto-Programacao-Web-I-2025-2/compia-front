@@ -38,8 +38,7 @@ export const logout = async () => {
         await api.post('auth/token/logout/'); 
     } finally {
         localStorage.removeItem('auth_token');
-        localStorage.removeItem('role');
-        localStorage.removeItem('carrinhoIds');
+        localStorage.removeItem('role');       
     }
 };
 
