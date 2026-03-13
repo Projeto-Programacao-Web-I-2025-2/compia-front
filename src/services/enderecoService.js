@@ -18,10 +18,10 @@ export const buscaCep = async (cep) => {
 }
 
 export const enderecoUser = async () => {
-    const user = await api.get("/auth/users/me/");
+    const role = localStorage.getItem("role");
 
     try {
-        if (user.data.role === "CLIENTE") {
+        if (role === "CLIENTE") {
             const response = await api.get('/clientes/me/');
             return response.data.endereco;
         } 
@@ -35,10 +35,10 @@ export const enderecoUser = async () => {
 }
 
 export const cadastrarEndereco = async ({rua, numero, bairro, cidade, estado, complemento, cep}) => {
-    const user = await api.get("/auth/users/me/");
+     const role = localStorage.getItem("role");
 
     try {
-        if (user.data.role === "CLIENTE") {
+        if (role === "CLIENTE") {
             const response = await api.patch('clientes/me/' , {endereco: {rua, numero, bairro, cidade, estado, complemento, cep}});
             return response.data;
         }
@@ -62,4 +62,16 @@ export const cadastrarEndereco = async ({rua, numero, bairro, cidade, estado, co
 
         throw error
     }
+
+}
+
+export const calcularFrete = async (body) => {
+    try {
+        const response = await api.post('/integracao/melhorenvio/frete/', body);
+        return response.data;
+    } catch (err) {
+        console.log("Erro ao calcular frete:", err);
+        return null;
+    }
+    
 }

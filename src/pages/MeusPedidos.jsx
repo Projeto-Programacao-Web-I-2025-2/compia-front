@@ -8,11 +8,13 @@ import Header from "../components/hearders/Header"
 import { getMeusPedidos } from "../services/pedidoService";
 import { getProdutoById } from "../services/produtoService";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 export default function MeusPedidos() {
     const [pedidos, setPedidos] = useState([]);
     const [selectedPedido, setSelectedPedido] = useState(null);
     const [produtosDetalhes, setProdutosDetalhes] = useState([]);
+    const navig = useNavigate();
     
     useEffect(() => {
         const carregaPedidos = async () => {
@@ -111,7 +113,7 @@ export default function MeusPedidos() {
                     </div>
                     <div className="detalhes flex flex-col flex-1 justify-center items-center space-y-10">
                         {selectedPedido ? detalhar(selectedPedido.status) : <p className="text-[#5494D2] font-bold text-2xl">Selecione um pedido para ver os detalhes</p>}
-                        {selectedPedido ?
+                        {selectedPedido ? (
                             <div className="space-y-5">
                                 <div className="flex space-x-5 items-center justify-center">
                                     <p>Sub-total: {(selectedPedido.total - selectedPedido.frete).toFixed(2)}</p>
@@ -120,7 +122,7 @@ export default function MeusPedidos() {
                                 </div>
                                 <div className="flex flex-col justify-center items-center ">
                                     Produtos:
-                                    <div className="flex flex-col h-[300px] space-y-5 overflow-y-auto items-center ">
+                                    <div className="flex flex-col h-[230px] space-y-5 overflow-y-auto items-center ">
                                         {produtosDetalhes.map(pd => (
                                             <div key={pd.id} className="flex-shrink-0">
                                                 <CardProdutoPedido key={pd.id} produto={{...pd, estoque: pd.quantidade}}/>
@@ -128,8 +130,15 @@ export default function MeusPedidos() {
                                         ))}
                                     </div>
                                 </div>
-                            </div> : <></>
-                        }   
+                                <div className="flex items-center justify-center">
+                                    {selectedPedido.status === "ABERTO" && (
+                                        <button className='flex justify-center text-white items-center bg-[#F174A7] border-1 border-white p-2 rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer' onClick={(e) => {e.stopPropagation();  e.preventDefault(); navig("/checkout/" + selectedPedido.id);}}>
+                                            Pagar Pedido
+                                        </button>
+                                    )}
+                                </div>
+                            </div>
+                        ) : null}
                     </div>
 
                 </div>

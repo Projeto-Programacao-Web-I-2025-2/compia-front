@@ -11,6 +11,33 @@ export const criaPedido = async (carrinhosIds) => {
     }
 }
 
+export const atualizaStatusPedido = async (pedidoId, status) => {
+    try {
+        const response = await api.patch(`/pedidos/${pedidoId}/`, {status})
+        return response.data;
+    } catch (err) {
+        console.log(err.data);
+    }
+}
+
+export const atualizaFretePedido = async (pedidoId, frete) => {
+    try {
+        const response = await api.patch(`/pedidos/${pedidoId}/`, {frete})
+        return response.data;
+    } catch (err) {
+        console.log(err.data);
+    }
+}
+
+export const getPedidoById = async ({id}) => {
+    try {
+        const response = await api.get(`/pedidos/${id}/`)
+        return response.data;
+    } catch (err) {
+        console.log(err.data);
+    }
+}
+
 export const getMeusPedidos = async () => {
      try {
         const response = await api.get('/pedidos/')

@@ -27,7 +27,7 @@ const CardPedido = ({ pedido, onDetalhar }) => {
                 </div>
                 <div className="flex justify-between items-center mt-2">
                     <p>Total: R$ {total}</p>
-                    <p className="nomeProduto line-clamp-1">Previsão entrega: {formataData(data_entrega)}</p>
+                    <p className="nomeProduto line-clamp-1">Data de entrega: {formataData(data_entrega)}</p>
                     <button className="flex items-center w-[70px] justify-center rounded-xl p-1 bg-[#F174A7] hover:bg-[#d26e97] border-1 border-[#979797] text-white cursor-pointer" onClick={handleDetalhar}>
                         Detalhar
                     </button>

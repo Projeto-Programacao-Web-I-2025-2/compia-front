@@ -10,6 +10,8 @@ import Anunciar from '../pages/Anunciar'
 import MeusPedidos from '../pages/MeusPedidos'
 import EditaLivro from '../pages/EditaLivro'
 import MinhasVendas from '../pages/MinhaVendas'
+import Pagamento from '../pages/Pagamento'
+import Checkout from '../pages/Checkout'
 
 export default function RoutesApp() {
     return (
@@ -90,6 +92,20 @@ export default function RoutesApp() {
                 path="/minhas-vendas"
                 element={
                     <MinhasVendas />
+                }
+            />
+
+            <Route
+                path="/pagamento/:id"
+                element={
+                    <Pagamento />
+                }
+            />
+
+            <Route
+                path="/checkout/:id"
+                element={
+                    <Checkout />
                 }
             />
             

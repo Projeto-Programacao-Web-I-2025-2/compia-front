@@ -6,8 +6,10 @@ import CardProdutoCarrinho from "../components/cards/CardProdutoCarrinho";
 import { useCarrinho } from "../contexts/CarrinhoContext";
 import { criaPedido } from "../services/pedidoService";
 import { message } from "antd";
+import { useNavigate } from "react-router";
 
 export default function Carrinho() {
+    const navigate = useNavigate();
     const { carrinhoIds, removeProduto, getQtd } = useCarrinho();
     const [produtos, setProdutos] = useState([]);
     const { clearCarrinho } = useCarrinho();
@@ -46,7 +48,7 @@ export default function Carrinho() {
         const response = await criaPedido(carrinhoIds);
 
         if (response) {
-            message.success("Pedido criado com sucesso!");
+            navigate("/checkout/" + response.id);
             clearCarrinho();
         }
     }
