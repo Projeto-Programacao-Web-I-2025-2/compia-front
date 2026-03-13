@@ -7,6 +7,7 @@ import { useCarrinho } from "../contexts/CarrinhoContext";
 import { criaPedido } from "../services/pedidoService";
 import { message } from "antd";
 import { useNavigate } from "react-router";
+import { isLogged } from "../services/authService";
 
 export default function Carrinho() {
     const navigate = useNavigate();
@@ -45,6 +46,14 @@ export default function Carrinho() {
     }
 
     const handleCriarPedido = async () => {
+        const user = await isLogged();
+
+        if (!user) {
+            navigate("/login");
+            message.warning("Faça login para finalizar seu pedido.");
+            return;
+        }
+
         const response = await criaPedido(carrinhoIds);
 
         if (response) {
