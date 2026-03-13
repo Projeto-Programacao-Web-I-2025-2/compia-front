@@ -43,7 +43,7 @@ export const editProduto = async (body, tipo, {id}) => {
 }
 
 export const createProduto = async (body, tipo) => {
-    const endpoint = tipo === "LIVRO" ? 'produtos/livros/' : 'produtos/ebooks/';
+    const endpoint = tipo === "livro" ? 'produtos/livros/' : 'produtos/ebooks/';
 
     try {
         const response = await api.post(endpoint, body, {
@@ -73,7 +73,7 @@ export const createProduto = async (body, tipo) => {
 }
 
 export const getCategorias = async () => {
-    const response = await api.get('produtos/categorias');
+    const response = await api.get('produtos/categorias/');
 
     return(response.data);
 }
