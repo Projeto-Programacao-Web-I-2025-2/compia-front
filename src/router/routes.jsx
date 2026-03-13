@@ -12,6 +12,7 @@ import EditaLivro from '../pages/EditaLivro'
 import MinhasVendas from '../pages/MinhaVendas'
 import Pagamento from '../pages/Pagamento'
 import Checkout from '../pages/Checkout'
+import EditarConta from '../pages/EditarConta'
 
 export default function RoutesApp() {
     return (
@@ -106,6 +107,13 @@ export default function RoutesApp() {
                 path="/checkout/:id"
                 element={
                     <Checkout />
+                }
+            />
+
+            <Route
+                path="/editar-conta"
+                element={
+                    <EditarConta/>
                 }
             />
             

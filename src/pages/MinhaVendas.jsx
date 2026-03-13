@@ -55,7 +55,7 @@ export default function MinhasVendas() {
                 <div className="flex flex-col justify-center ">
                     {infoCliente.endereco ?
                     <div>
-                        <p className="font-bold">Endereço de entrega:</p>
+                        <p className="font-bold">Endereço do cliente:</p>
                         <div className="flex flex-col space-y-1 overflow-y-auto ">
                             <div className="flex space-x-5">
                                 <p>Rua: {infoCliente.endereco.rua}</p>

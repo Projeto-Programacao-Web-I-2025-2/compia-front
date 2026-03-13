@@ -24,10 +24,12 @@ export const enderecoUser = async () => {
         if (role === "CLIENTE") {
             const response = await api.get('/clientes/me/');
             return response.data.endereco;
-        } 
+        } else if (role === "VENDEDOR") {
+            const response = await api.get('/vendedores/me/');
+            return response.data.endereco;
+        }
 
-        const response = await api.get('/vendedores/me/');
-        return response.data.endereco;
+        return;
     } catch (err) {
         console.log("Erro ao carregar endereço:", err);
         return;

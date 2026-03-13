@@ -77,6 +77,9 @@ export default function Perfil() {
                                 Minhas Vendas
                             </Link>
                         }
+                        <Link to={"/editar-conta"} className="flex bg-[#5494D2] border-[#979797] rounded-xl border-1 w-[400px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
+                            Editar Conta
+                        </Link>
                         <button onClick={handleLogout} className="flex items-center justify-center border-1 border-[#979797] w-[400px] h-[50px] bg-[#F174A7] hover:bg-[#d26e97] rounded-xl  font-bold">
                             Logout
                         </button>

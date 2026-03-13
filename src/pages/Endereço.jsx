@@ -69,6 +69,14 @@ export default function Endereco() {
         }
     }
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setEndereco(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
     return(
         <div>
             {roleUser === "CLIENTE" ? <Header/> : <HeaderVendedor/>}
@@ -77,13 +85,13 @@ export default function Endereco() {
                     <div className="flex flex-col w-1/2 justify-center items-center space-y-3">
                         <p className="text-white font-bold text-xl">Endereço</p>
                         <form onSubmit={handleSubmit} className="flex flex-col bg-white p-10 rounded-xl items-center justify-center space-y-2">
-                            <input defaultValue={endereco.cep} className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='CEP' onChange={(e) => handleCep(e.target.value)}></input>
-                            <input defaultValue={endereco.estado} id="es" className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Estado' ></input>
-                            <input defaultValue={endereco.cidade} id="cd" className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Cidade'></input>
-                            <input defaultValue={endereco.bairro} id="br" className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Bairro'></input>
-                            <input defaultValue={endereco.rua} id="rua" className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Rua'></input>
-                            <input defaultValue={endereco.numero} className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Número'  onChange={(e) => setEndereco({...endereco, numero: e.target.value})}></input>
-                            <input defaultValue={endereco.complemento} className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Complemento'  onChange={(e) => setEndereco({...endereco, complemento: e.target.value})}></input>
+                            <input name="cep" value={endereco.cep} className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='CEP' onChange={(e) => { handleChange(e); handleCep(e.target.value); }}></input>
+                            <input name="estado" value={endereco.estado} id="es" className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Estado' onChange={handleChange}></input>
+                            <input name="cidade" value={endereco.cidade} id="cd" className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Cidade' onChange={handleChange}></input>
+                            <input name="bairro" value={endereco.bairro} id="br" className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Bairro' onChange={handleChange}></input>
+                            <input name="rua" value={endereco.rua} id="rua" className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Rua' onChange={handleChange}></input>
+                            <input name="numero" value={endereco.numero} id="numero" className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Número'  onChange={handleChange}></input>
+                            <input name="complemento" value={endereco.complemento} id="complemento" className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='Complemento'  onChange={handleChange}></input>
                             <button type="submit" className='flex justify-center items-center bg-[#F174A7] w-[235px] h-[30px] rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer'>
                                 <p className='text-white'>Salvar</p>
                             </button>
