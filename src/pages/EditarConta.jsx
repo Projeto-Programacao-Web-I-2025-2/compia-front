@@ -1,11 +1,8 @@
 import Header from "../components/hearders/Header"
 import HeaderVendedor from "../components/hearders/HeaderVendedor";
-import imagem from "/mapa.png"
-import { buscaCep, cadastrarEndereco, enderecoUser } from "../services/enderecoService";
 import { useEffect, useState } from "react";
 import { message } from "antd";
-import { Link, useNavigate } from "react-router";
-import { IoIosArrowBack } from "react-icons/io";
+import { useNavigate } from "react-router";
 import { getMe } from "../services/authService";
 import { atualizarUsuario, atualizarSenha  } from "../services/userService";
 

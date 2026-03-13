@@ -1,4 +1,3 @@
-import { LuShoppingCart } from "react-icons/lu";
 import { Link } from "react-router-dom"
 import { CiImageOff } from "react-icons/ci";
 import { useCarrinho } from "../../contexts/CarrinhoContext";

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { message } from "antd";
 import { createProduto } from "../services/produtoService";
-import SelectCategorias from "../components/utils/SelectCategorias";
 import { useNavigate } from "react-router";
 import HeaderVendedor from "../components/hearders/HeaderVendedor";
 import FormLivro from "../components/utils/FormLivro";

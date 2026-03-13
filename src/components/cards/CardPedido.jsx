@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 const CardPedido = ({ pedido, onDetalhar }) => {
     const { id, total, data_pedido, data_entrega, status, itens, frete } = pedido || {};
 

@@ -54,7 +54,7 @@ export default function PaginaProduto() {
     }
 
     const { nome, autor, descricao, preco, imagem, estoque, ano_lancamento, tipo, categorias } = produto || {};
-
+    
     return(
         <div>
             {roleUser === "CLIENTE" || !roleUser ? <Header/> : <HeaderVendedor/>}

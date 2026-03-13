@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { message } from "antd";
-import { createProduto, editProduto } from "../services/produtoService";
+import { editProduto } from "../services/produtoService";
 import { useNavigate, useParams } from "react-router";
 import HeaderVendedor from "../components/hearders/HeaderVendedor";
 import FormLivro from "../components/utils/FormLivro";

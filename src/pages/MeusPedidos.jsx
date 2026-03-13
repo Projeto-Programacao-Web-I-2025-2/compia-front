@@ -1,6 +1,5 @@
 import CardPedido from "../components/cards/CardPedido";
 import CardProdutoPedido from "../components/cards/CardProdutoPedido";
-import { CiDeliveryTruck } from "react-icons/ci";
 import { MdOutlinePayments } from "react-icons/md";
 import { TbTruckDelivery } from "react-icons/tb";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
