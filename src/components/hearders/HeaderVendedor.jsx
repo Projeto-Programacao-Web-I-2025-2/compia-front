@@ -7,9 +7,9 @@ import Imagem from '/logo.png'
 export default function HeaderVendedor() {
 
     return(
-        <div className='flex items-center bg-[#5494D2] w-screen h-[100px] shadow-2xl'>
+        <div className='flex items-center bg-[#5494D2] w-full h-[100px] shadow-2xl'>
             <div className='flex items-center bg-[#FFFFFF] w-full h-[50px] justify-between'>
-                <Link to="/home"><img src={Imagem} className='w-[160px] h-[40px] ml-4 cursor-pointer'></img></Link>
+                <Link to="/home"><img src={Imagem} className='w-[100px] h-[25px] md:w-[120px] md:h-[30px] lg:w-[160px] lg:h-[40px] ml-4 cursor-pointer'></img></Link>
                 <div className="flex mr-4 space-x-4 items-center">
                     <Link to="/anunciar" className="flex border-3 rounded-xl p-1 space-x-1 font-bold hover:bg-[#c5c5c5] cursor-pointer">
                         <p>Anunciar</p>

@@ -5,8 +5,11 @@
 }
 
 body {
-  display: flex;
+  margin: 0;
+  padding: 0;
+  width: 100%;
   font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
 }
 
 @layer base {

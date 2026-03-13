@@ -12,13 +12,15 @@ const ListaProdutos = ({arrayProdutos, filtros}) => {
             if (produtos) {
                 setProdutos(produtos);
             }
+
+            console.log("Produtos carregados:", produtos);
         }
         carregaProdutos();
     }, [arrayProdutos, filtros])
 
     if (!produtos) {
         return (
-            <div className="flex w-[1100px] items-center justify-center  text-[#5494D2]"> 
+            <div className="flex mx-auto items-center justify-center  text-[#5494D2]"> 
                 <LoadingOutlined style={{ fontSize: 60 }}/>
             </div>
         );
@@ -33,7 +35,7 @@ const ListaProdutos = ({arrayProdutos, filtros}) => {
     }
 
     return (
-        <div className="flex w-[1100px] flex-wrap space-x-10 space-y-10">
+        <div className="flex w-[300px] md:w-[1100px] flex-wrap space-x-10 space-y-10 justify-start mx-auto">
             {Array.isArray(produtos) && produtos.map(prd => <CardProduto key={prd.id} produto={prd}/>)}
         </div>
     )

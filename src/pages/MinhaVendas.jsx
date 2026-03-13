@@ -5,9 +5,10 @@ import HeaderVendedor from "../components/hearders/HeaderVendedor";
 import { getVendas } from "../services/vendasService";
 import { useState, useEffect } from "react";
 import { getClienteById } from "../services/userService";
+import { LoadingOutlined } from '@ant-design/icons';
 
 export default function MinhasVendas() {
-    const [vendas, setVendas] = useState([]);
+    const [vendas, setVendas] = useState(null);
     const [selectedVenda, setSelectedVenda] = useState(null);
     const [produtosDetalhes, setProdutosDetalhes] = useState([]);
     const [clientePedido, setClientePedido] = useState(null);
@@ -29,20 +30,27 @@ export default function MinhasVendas() {
             carregaVendas();
         }, [])
 
-    if(vendas.length === 0 || !vendas) {
+    if(!vendas) {
         return(
             <div>
                 <HeaderVendedor/>
-                <div className="flex justify-center mt-9">
-                    <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl justify-end">
-                        <div className="flex w-1/2 bg-white roundel-xl items-center justify-center font-bold text-2xl text-[#5494D2]">
-                            <p>Não há pedidos!</p>
-                        </div>
-                    </div>
-                </div>
+                <div className="flex mx-auto items-center justify-center  text-[#5494D2]"> 
+                    <LoadingOutlined style={{ fontSize: 60 }}/>
+                </div> 
             </div>
         )
     } 
+
+    if (vendas.length === 0) {
+        return (
+            <div>
+                <HeaderVendedor/>
+                <div className="flex w-full items-center justify-center  text-[#5494D2]"> 
+                    <p className="text-3xl font-bold">Nenhuma venda realizada ainda!</p>
+                </div> 
+            </div>
+        )
+    }
 
     const detalhesCliente =  (infoCliente) => {
         return(
@@ -109,46 +117,65 @@ export default function MinhasVendas() {
 
     return (
         <div>
-            <HeaderVendedor/>
+            <HeaderVendedor />
             <div className="flex justify-center mt-9">
-                <div className="flex bg-[#FFFFFF] w-[1365px] h-[730px] rounded-xl shadow-2xl">
-                    <div className="flex w-1/2 rounded-l-xl bg-[#5494D2] justify-center items-center">
-                        <div className="flex flex-col h-[670px] space-y-5 overflow-y-auto items-center">
+                <div className="flex flex-col md:flex-row bg-[#FFFFFF] w-[410px] min-h-[650px] md:w-[1165px] h-[730px] rounded-xl shadow-2xl">
+                    <div className={`${selectedVenda ? "hidden" : "flex"} flex-col md:flex md:w-1/2 rounded-xl md:rounded-l-xl md:rounded-r-none bg-[#5494D2] justify-center items-center p-4`}>
+                        <p className="text-white mb-4 font-bold">Minhas Vendas:</p>
+                        <div className="flex flex-col h-[670px] space-y-5 overflow-y-auto items-center w-full">
                             {vendas.map(venda => (
                                 <div key={venda.id} className="flex-shrink-0">
-                                    <CardVenda venda={venda} onDetalhar={handleDetalhar}/>
+                                    <CardVenda venda={venda} onDetalhar={handleDetalhar} />
                                 </div>
                             ))}
                         </div>
                     </div>
-                    <div className="detalhes flex flex-col flex-1 justify-center items-center space-y-10">
-                        {!selectedVenda ? <p className="text-[#5494D2] font-bold text-2xl">Selecione uma venda para ver os detalhes</p> : <></>}
-                        {selectedVenda ?
-                            <div className="flex flex-col space-y-5 justify-center items-center">
-                                <p className="text-[#5494D2] font-bold text-2xl">Detalhes da Venda: {selectedVenda.id}</p>
-                                <div className="flex space-x-5 items-center justify-center">
-                                    <p>Data da Venda: {formataData(selectedVenda.data_venda)}</p>
-                                    <p>Total: {selectedVenda.valor_total}</p>
+
+                    <div className="detalhes flex flex-col flex-1 justify-center items-center relative">
+                        {selectedVenda && (
+                            <button 
+                                onClick={() => setSelectedVenda(null)} 
+                                className="md:hidden absolute top-4 right-4 text-[#5494D2] text-3xl font-bold p-2"
+                            >
+                                ✕
+                            </button>
+                        )}
+
+                        {!selectedVenda ? (
+                            <p className="hidden md:block text-[#5494D2] font-bold text-2xl text-center">
+                                Selecione uma venda para ver os detalhes
+                            </p>
+                        ) : (
+                            <div className={`${selectedVenda ? "flex" : "hidden md:flex"} flex-col space-y-5 justify-center items-center w-full p-5`}>
+                                <p className="text-[#5494D2] font-bold text-2xl text-center">
+                                    Detalhes da Venda: {selectedVenda.id}
+                                </p>
+                                
+                                <div className="flex flex-wrap gap-4 items-center justify-center text-[#5494D2]">
+                                    <p>Data: {formataData(selectedVenda.data_venda)}</p>
+                                    <p className="font-bold">Total: {selectedVenda.valor_total}</p>
                                 </div>
+
                                 {clientePedido ? 
                                     detalhesCliente(clientePedido)
                                     : <p>Carregando informações do cliente...</p>
                                 }
-                                <div className="flex flex-col justify-center items-center ">
-                                    Produtos vendidos:
-                                    <div className="flex flex-col h-[300px] space-y-5 overflow-y-auto items-center ">
+
+                                <div className="flex flex-col justify-center items-center w-full">
+                                    <p className="font-bold text-[#5494D2] mb-2">Produtos vendidos:</p>
+                                    <div className="flex flex-col h-[140px] md:h-[300px] w-full space-y-4 overflow-y-auto items-center bg-gray-50 rounded-lg p-2">
                                         {produtosDetalhes.map(pd => (
                                             <div key={pd.id} className="flex-shrink-0">
-                                                <CardProdutoPedido key={pd.id} produto={{...pd, estoque: pd.quantidade}}/>
+                                                <CardProdutoPedido produto={{...pd, estoque: pd.quantidade}} />
                                             </div>
                                         ))}
                                     </div>
                                 </div>
-                            </div> : <></>
-                        }   
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }

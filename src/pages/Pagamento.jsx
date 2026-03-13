@@ -92,8 +92,8 @@ export default function Pagamento() {
         <div>
             <Header />
             <div className="flex justify-center mt-9">
-                <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl justify-center items-center">
-                    <div className="flex flex-col justify-center items-center space-y-3">
+                <div className="flex bg-[#5494D2] w-[410px] min-h-[650px] md:w-[1165px] md:h-[730px] rounded-xl shadow-2xl justify-center items-center">
+                    <div className="flex flex-col justify-center items-center space-y-3 mt-3 mb-3">
                         <p className="text-white font-bold text-xl">Dados do cartão</p>
 
                         <form onSubmit={handleSubmit} className="flex flex-col bg-white p-8 rounded-xl justify-center space-y-2">
@@ -170,7 +170,7 @@ export default function Pagamento() {
                             </button>
                         </form>
 
-                        <p className="text-white w-[600px] text-justify">
+                        <p className="text-white w-[370px] md:w-[600px] text-justify">
                             *Aviso de Teste: Para simular o checkout, utilize quaisquer dados fictícios que sigam o formato padrão (16 dígitos para o cartão, 11 para CPF). Nenhuma cobrança real será efetuada e os dados não são salvos por questões de segurança e privacidade.
                         </p>
                     </div>

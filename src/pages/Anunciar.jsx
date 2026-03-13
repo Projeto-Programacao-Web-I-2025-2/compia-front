@@ -76,7 +76,7 @@ export default function Anunciar() {
         <div>
             <HeaderVendedor/>
             <div className="flex justify-center mt-9">
-                <div className="flex flex-col bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl justify-center items-center">
+                <div className="flex flex-col bg-[#5494D2] w-[410px]  md:w-[1165px] h-[730px] rounded-xl shadow-2xl justify-center items-center">
                     <p className="text-white font-bold text-3xl mb-5">Anunciar livro</p>
                     <FormLivro produto={produto} setProduto={setProduto} onEnviar={handleSubmit}/>
                 </div>

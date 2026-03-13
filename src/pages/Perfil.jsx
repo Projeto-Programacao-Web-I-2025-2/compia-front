@@ -46,7 +46,7 @@ export default function Perfil() {
             <div>
                 {roleUser === "CLIENTE" ? <Header/> : <HeaderVendedor/>}
                 <div className="flex justify-center mt-9">
-                    <div className="flex bg-[#FFFFFF] w-[1365px] h-[730px] rounded-xl shadow-2xl justify-center items-center text-[#5494D2]">
+                    <div className="flex bg-[#FFFFFF] w-[1165px] h-[730px] rounded-xl shadow-2xl justify-center items-center text-[#5494D2]">
                         <LoadingOutlined style={{ fontSize: 60 }}/>
                     </div>
                 </div>
@@ -58,29 +58,29 @@ export default function Perfil() {
         <div>
             {roleUser === "CLIENTE" ? <Header/> : <HeaderVendedor/>}
             <div className="flex justify-center mt-9">
-                <div className="flex flex-col bg-[#FFFFFF] w-[1365px] h-[730px] rounded-xl shadow-2xl items-center justify-center font-bold text-xl text-white">
+                <div className="flex flex-col bg-[#FFFFFF] w-[410px] h-[650px] md:w-[1165px] md:h-[730px] rounded-xl shadow-2xl items-center justify-center font-bold text-xl text-white">
                     <div className="flex flex-col w-1/2 space-y-5 items-center justify-center">
-                        <h1 className="text-[#5494D2] font-bold text-3xl capitalize">Tipo conta: {roleUser.toLowerCase()}</h1>
+                        <h1 className="text-[#5494D2] font-bold text-xl capitalize">Tipo conta: {roleUser.toLowerCase()}</h1>
                         <FaRegCircleUser size={200} color="#5494D2"/>
-                        <h2 className="text-[#5494D2] font-bold text-3xl">{dados.nome}</h2>
+                        <h2 className="flex justify-center w-[400px] text-[#5494D2] font-bold text-3xl line-clamp-1">{dados.nome}</h2>
                         {roleUser === "CLIENTE" ? 
-                            <div className="space-y-5">
-                                <Link to={"/meus-pedidos"} className="flex bg-[#5494D2] border-[#979797] rounded-xl border-1 w-[400px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
+                            <div className="space-y-5 flex flex-col items-center justify-center">
+                                <Link to={"/meus-pedidos"} className="flex bg-[#5494D2] border-[#979797] rounded-xl border-1 w-[350px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
                                     Acompanhar Pedidos
                                 </Link>
-                                <Link to={"/endereco"} className="flex bg-[#5494D2] border-[#979797] rounded-xl border-1 w-[400px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
+                                <Link to={"/endereco"} className="flex bg-[#5494D2] border-[#979797] rounded-xl border-1 w-[350px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
                                     Endereço
                                 </Link>
                             </div>
                             :
-                            <Link to={"/minhas-vendas"} className="flex bg-[#5494D2] border-[#979797] rounded-xl border-1 w-[400px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
+                            <Link to={"/minhas-vendas"} className="flex bg-[#5494D2] border-[#979797] rounded-xl border-1 w-[350px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
                                 Minhas Vendas
                             </Link>
                         }
-                        <Link to={"/editar-conta"} className="flex bg-[#5494D2] border-[#979797] rounded-xl border-1 w-[400px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
+                        <Link to={"/editar-conta"} className="flex bg-[#5494D2] border-[#979797] rounded-xl border-1 w-[350px] h-[50px] shadow-xl hover:bg-[#31567A] items-center justify-center">
                             Editar Conta
                         </Link>
-                        <button onClick={handleLogout} className="flex items-center justify-center border-1 border-[#979797] w-[400px] h-[50px] bg-[#F174A7] hover:bg-[#d26e97] rounded-xl  font-bold">
+                        <button onClick={handleLogout} className="flex items-center justify-center border-1 border-[#979797] w-[350px] h-[50px] bg-[#F174A7] hover:bg-[#d26e97] rounded-xl  font-bold">
                             Logout
                         </button>
                     </div>

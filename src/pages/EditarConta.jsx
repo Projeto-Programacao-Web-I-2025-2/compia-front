@@ -91,7 +91,7 @@ export default function EditarConta() {
         <div>
             {roleUser === "CLIENTE" ? <Header/> : <HeaderVendedor/>}
             <div className="flex justify-center mt-9">
-                <div className="flex flex-col space-y-3 bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl justify-center items-center">
+                <div className="flex flex-col space-y-3 bg-[#5494D2] w-[410px] h-[650px] md:w-[1165px] md:h-[730px] rounded-xl shadow-2xl justify-center items-center">
                     <div className="flex flex-col justify-center items-center space-y-3">
                         <p className="text-white font-bold text-xl">Nome do usuário</p>
                         <form onSubmit={handleSubmitNome} className="flex flex-col bg-white p-10 rounded-xl items-center justify-center space-y-2">

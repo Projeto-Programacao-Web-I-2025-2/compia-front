@@ -59,6 +59,7 @@ export const isLogged = async () => {
         return response.data;
     } catch (error) {
         localStorage.removeItem('auth_token');
+        localStorage.removeItem('role');       
         delete api.defaults.headers.common['Authorization'];
         return null;
     }

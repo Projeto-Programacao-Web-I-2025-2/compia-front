@@ -32,7 +32,7 @@ const CardProdutoCarrinho = ({produto, onRemove}) => {
 
     return(
         <Link to={`/produto/${id}`}>
-            <div className="flex bg-[#FFFFFF] border-[#979797] rounded-lg border-1 w-[610px] h-[120px] shadow-xl hover:bg-[#f5f5f5]">
+            <div className="flex bg-[#FFFFFF] border-[#979797] rounded-lg border-1 w-[300px] h-[120px] md:w-[550px] md:h-[120px] shadow-xl hover:bg-[#f5f5f5]">
                 <div className="flex fundoImagemProduto bg-[#E5E5E5] w-[100px] h-[100px] ml-3 mt-2 items-center justify-center">
                     {imagem ? <img src={imagem} className="object-contain w-[100px] h-[100px]"></img> : <CiImageOff size={70}/>}
                 </div>

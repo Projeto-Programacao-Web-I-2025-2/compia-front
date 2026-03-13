@@ -81,8 +81,8 @@ export default function Endereco() {
         <div>
             {roleUser === "CLIENTE" ? <Header/> : <HeaderVendedor/>}
             <div className="flex justify-center mt-9">
-                <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl">
-                    <div className="flex flex-col w-1/2 justify-center items-center space-y-3">
+                <div className="flex bg-[#5494D2]  w-[410px] h-[650px] md:w-[1165px] md:h-[730px] rounded-xl shadow-2xl">
+                    <div className="flex flex-col w-full md:w-1/2 justify-center items-center space-y-3">
                         <p className="text-white font-bold text-xl">Endereço</p>
                         <form onSubmit={handleSubmit} className="flex flex-col bg-white p-10 rounded-xl items-center justify-center space-y-2">
                             <input name="cep" value={endereco.cep} className='border-1 border-[#979797] p-1 rounded-sm w-[235px]' placeholder='CEP' onChange={(e) => { handleChange(e); handleCep(e.target.value); }}></input>
@@ -97,7 +97,7 @@ export default function Endereco() {
                             </button>
                         </form>
                     </div>
-                    <div className="flex flex-1 bg-white  rounded-r-xl items-center">
+                    <div className="flex flex-1 bg-white rounded-r-xl items-center hidden md:flex">
                         <img src={imagem}></img>
                     </div>
                 </div>

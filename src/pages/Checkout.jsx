@@ -44,7 +44,7 @@ export default function Checkout() {
             <div>
                 <Header/>
                 <div className="flex justify-center items-center mt-9">
-                    <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl items-center justify-center font-bold text-xl ">
+                    <div className="flex bg-[#5494D2] w-[1165px] h-[730px] rounded-xl shadow-2xl items-center justify-center font-bold text-xl text-white ">
                         Carregando pedido...
                     </div>
                 </div>
@@ -63,11 +63,11 @@ export default function Checkout() {
         <div>
             <Header/>
             <div className="flex justify-center items-center mt-9">
-                <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl items-center justify-center ">
+                <div className="flex flex-col md:flex-row w-[410px] min-h-[650px] md:w-[1165px] md:h-[730px] bg-[#5494D2] rounded-xl shadow-2xl items-center justify-center ">
                     <div className="flex w-1/2 justify-center items-center ">
                         <div className="flex flex-col justify-center items-center ">
                                 <p className="font-bold text-white">Produtos:</p>
-                                <div className="flex flex-col h-[600px] space-y-5 overflow-y-auto items-center ">
+                                <div className="flex flex-col max-h-[600px] space-y-5 overflow-y-auto items-center ">
                                     {produtosDetalhes.map(pd => (
                                         <div key={pd.id} className="flex-shrink-0">
                                             <CardProdutoPedido key={pd.id} produto={{...pd, estoque: pd.quantidade}}/>
@@ -83,7 +83,7 @@ export default function Checkout() {
                             <p id="frete">Frete: {valorFrete.toFixed(2)}</p>
                             <p>Total: {valorTotalRef.toFixed(2)}</p>
                         </div>
-                        <button className='flex justify-center  items-center bg-[#F174A7] w-[435px] h-[60px] rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer' onClick={handleIrParaPagamento}>
+                        <button className='flex justify-center  items-center bg-[#F174A7] w-[200px] mb-3 md:w-[435px] h-[60px] rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer' onClick={handleIrParaPagamento}>
                                 <p className='text-white'>Ir para pagamento</p>
                         </button>         
                     </div>

@@ -10,6 +10,7 @@ import { useCarrinho } from "../contexts/CarrinhoContext";
 import { getVendedorById } from "../services/userService";
 import { getCategorias } from "../services/produtoService";
 import FreteCard from "../components/utils/FreteCard";
+import { LoadingOutlined } from '@ant-design/icons';
 
 export default function PaginaProduto() {
     const { addProduto } = useCarrinho();
@@ -45,23 +46,9 @@ export default function PaginaProduto() {
          return(
             <div>
                 {roleUser === "CLIENTE" || !roleUser ? <Header/> : <HeaderVendedor/>}
-                <div className="flex justify-center mt-9">
-                    <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl">
-                        <div className="ml-10 mt-10 rounded-xl border-1 border-[#979797] bg-[#FFFFFF] w-[650px] h-[650px] shadow-xl animate-[pulse_0.9s_ease-in-out_infinite]"></div>
-                        <div className="flex justify-between flex-col flex-1 mt-10 ml-10 mr-10 mb-10 w-[600px]">
-                            <div>
-                                <div className="bg-[#FFFFFF] w-[600px] h-[40px] rounded-lg animate-[pulse_0.9s_ease-in-out_infinite]"></div>
-                                <div className="mt-2 bg-[#FFFFFF] w-[200px] h-[40px] rounded-lg animate-[pulse_0.9s_ease-in-out_infinite]"></div>
-                            </div>
-                            <div className="bg-[#FFFFFF] w-[600px] h-[400px] rounded-lg animate-[pulse_0.9s_ease-in-out_infinite]">
-                            </div>
-                            <div className="flex items-center justify-between">
-                                <div className="bg-[#FFFFFF] w-[200px] h-[40px] rounded-lg animate-[pulse_0.9s_ease-in-out_infinite]"></div>
-                                <div className="bg-[#FFFFFF] w-[200px] h-[40px] rounded-lg animate-[pulse_0.9s_ease-in-out_infinite]"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div className="flex mx-auto items-center justify-center  text-[#5494D2]"> 
+                    <LoadingOutlined style={{ fontSize: 60 }}/>
+                </div> 
             </div>
         )
     }
@@ -72,11 +59,11 @@ export default function PaginaProduto() {
         <div>
             {roleUser === "CLIENTE" || !roleUser ? <Header/> : <HeaderVendedor/>}
             <div className="flex justify-center mt-9">
-                <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl">
-                    <div className="flex justify-center items-center ml-10 mt-10 rounded-xl border-1 border-[#979797] bg-[#FFFFFF] w-[650px] h-[650px] shadow-xl">
-                        {imagem ? <img src={imagem} className="object-contain w-[650px] h-[650px]"></img> : <CiImageOff size={130}/>}
+                <div className="flex flex-col md:flex-row bg-[#5494D2] w-[410px] min-h-[650px] md:w-[1165px] md:h-[730px] rounded-xl shadow-2xl">
+                    <div className="flex justify-center items-center mx-auto my-auto mt-5 md:ml-10 md:mt-20 rounded-xl border-1 border-[#979797] bg-[#FFFFFF]  w-[370px] h-[370px] md:w-[570px] md:h-[570px] shadow-xl">
+                        {imagem ? <img src={imagem} className="object-contain w-[370px] h-[370px] md:w-[570px] md:h-[570px]"></img> : <CiImageOff size={130}/>}
                     </div>
-                    <div className="flex justify-between flex-col flex-1 text-bold mt-10 ml-10 mr-10 mb-10 w-[600px] items-center">
+                    <div className="flex justify-between flex-col flex-1 text-bold ml-3 mt-5 md:ml-10 md:mt-10 md:mb-10 md:mr-10 w-[370px] md:w-[600px] items-center space-y-4">
                         <div className="text-white">
                             <h1 className="text-2xl line-clamp-3">{nome}</h1>
                             <div className="flex justify-between line-clamp-1">
@@ -88,7 +75,7 @@ export default function PaginaProduto() {
 
                             <div className="flex justify-between">
                                 <h3>Vendido por: {vendedor?.nome || 'Desconhecido'}</h3>
-                                <p>Estoque: {estoque}</p>
+                                {estoque > 0 && <p>Estoque: {estoque}</p>}
                             </div>
                         </div>
                         <div className="flex flex-col max-h-[170px] overflow-y-auto text-white text-justify">
@@ -96,7 +83,7 @@ export default function PaginaProduto() {
                             {descricao}
                         </div>
                         <FreteCard />
-                        <div className="flex items-center mx-auto text-white justify-between w-full">
+                        <div className="flex items-center mx-auto text-white justify-between w-full mb-4">
                             <h3 className="text-4xl">R$ {preco}</h3>
                             {roleUser == "CLIENTE" || !roleUser ? (estoque > 0 ?
                                 <button onClick={(e) => {e.stopPropagation(); e.preventDefault(); addProduto(Number(id));}} className="flex items-center border-1 border-[#FFFFFF] bg-[#F174A7] hover:bg-[#d26e97] rounded-xl p-2 text-xl">

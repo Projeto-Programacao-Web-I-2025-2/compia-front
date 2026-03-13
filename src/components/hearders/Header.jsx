@@ -28,18 +28,17 @@ export default function Header({onPesquisar}) {
     };  
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        if(onPesquisar) {
-            onPesquisar(pesquisa);
-            navigate('/home');
-        }
+    e.preventDefault();
+    if (pesquisa.trim()) {
+        navigate(`/home?search=${encodeURIComponent(pesquisa)}`);
     }
+}
 
     return(
-        <div className='flex items-center bg-[#5494D2] w-screen h-[100px] shadow-2xl'>
+        <div className='flex items-center bg-[#5494D2] w-full h-[100px] shadow-2xl'>
             <div className='flex items-center bg-[#FFFFFF] w-full h-[50px] justify-between'>
-                <Link to="/home"><img src={Imagem} className='w-[160px] h-[40px] ml-4 cursor-pointer'></img></Link>
-                <form onSubmit={handleSubmit} className="flex justify-between items-center border-2 border-[#979797] p-2 rounded-2xl w-[600px] h-[40px]">
+                <Link to="/home"><img src={Imagem} className='w-[100px] h-[25px] md:w-[120px] md:h-[30px] lg:w-[160px] lg:h-[40px] ml-4 cursor-pointer'></img></Link>
+                <form onSubmit={handleSubmit} className="flex w-[135px] h-[35px] md:w-[300px] lg:w-[600px] lg:h-[40px] xl:w-[600px] xl:h-[40px] justify-between items-center border-2 border-[#979797] p-2 rounded-2xl">
                         <input value={pesquisa} className="outline-none text-lg w-full" placeholder="Pesquisar em CompIA..." onChange={(e) => setPesquisa(e.target.value)} ></input>
                         <button type="submit" className="hover:bg-[#979797] rounded-xl">
                             <LuSearch size={30}/>

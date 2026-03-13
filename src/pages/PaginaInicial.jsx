@@ -4,21 +4,22 @@ import ModalFiltro from "../components/Filtro"
 import ListaProdutos from "../components/ListaProdutos"
 import { getProdutos, getProdutosVendedor } from "../services/produtoService"
 import { useState } from "react"
+import { useSearchParams } from "react-router-dom";
 
 export default function PaginaInical() {
+    const [searchParams] = useSearchParams();
     const [filtros, setFiltros] = useState("");
     const roleUser = localStorage.getItem('role');
-    const [termoPesquisa, setTermoPesquisa] = useState("");
+
+    const termoPesquisa = searchParams.get("search") || "";
 
     const renderizarProdutos = () => {
         let params = filtros || "?";
-        
         const separador = params === "?" ? "" : "&";
         
         if (termoPesquisa) {
             params += `${separador}search=${encodeURIComponent(termoPesquisa)}`;
         }
-        
         return params === "?" ? "" : params;
     };
 
@@ -36,13 +37,15 @@ export default function PaginaInical() {
                 </div>
                 :
                 <div>
-                    <Header onPesquisar={setTermoPesquisa} />
-                    <div className="flex justify-center mt-10">
+                    <Header />
+                    <div className="flex justify-center mt-9 w-full px-2">
                         <ListaProdutos
                             arrayProdutos={getProdutos}
                             filtros={renderizarProdutos()}
                         />
-                        <ModalFiltro onEnviar={setFiltros}/>
+                        <div className="hidden md:block">
+                            <ModalFiltro onEnviar={setFiltros}/>
+                        </div>
                     </div> 
                 </div>
             }

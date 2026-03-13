@@ -58,13 +58,13 @@ const FreteCard = ({ pacote, onEnviar }) => {
                 Opções de frete:
             </div>
 
-            <div className="flex flex-col gap-4 overflow-x-auto p-5 bg-white rounded-lg shadow-md font-bold items-center max-h-[200px]">
+            <div className="flex flex-col gap-4 overflow-x-auto  p-5 bg-white rounded-lg shadow-md font-bold items-center max-h-[200px]">
             {fretes
                     .filter((frete) => frete.price && !frete.error)
                     .map((frete) => (
                         <button
                             key={frete.id || frete.name} 
-                            className="border border-[#979797] bg-white rounded-lg p-1 min-w-[400px] flex items-center shadow-sm justify-between cursor-pointer hover:bg-gray-100"
+                            className="border border-[#979797] bg-white rounded-lg p-1 w-[300px] md:w-[400px] flex items-center shadow-sm justify-between cursor-pointer hover:bg-gray-100"
                             onClick={() => onEnviar(Number(frete.price).toFixed(2))}
                         >
                             <div className="flex space-x-2 items-center mr-4">
@@ -85,7 +85,7 @@ const FreteCard = ({ pacote, onEnviar }) => {
                         </button>
                     ))
                 }
-                <button onClick={() => onEnviar(0)} className="border border-[#979797] bg-white rounded-lg p-7 min-w-[400px] flex items-center shadow-sm justify-between cursor-pointer hover:bg-gray-100">
+                <button onClick={() => onEnviar(0)} className="border border-[#979797] bg-white rounded-lg p-7 w-[300px] md:w-[400px] flex items-center shadow-sm justify-between cursor-pointer hover:bg-gray-100">
                     <div className="font-semibold text-sm">Retirar na loja</div>
                     <div className="text-[#2d8f2d] font-bold">Grátis</div>        
                 </button>

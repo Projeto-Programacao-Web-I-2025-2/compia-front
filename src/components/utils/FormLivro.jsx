@@ -31,7 +31,7 @@ export default function FormLivro({ produto, setProduto, onEnviar }) {
 
     return(
         <div className="flex">
-            <form className="flex flex-col bg-white p-10 rounded-xl  space-y-2 w-[600px] h-[600px]" onSubmit={ handleSubmit }>
+            <form className="flex flex-col bg-white p-10 rounded-xl  space-y-2 w-[370px] h-[600px] md:w-[600px]" onSubmit={ handleSubmit }>
                 <input className='border-1 border-[#979797] p-1 rounded-sm w-full' placeholder='Nome' value={produto.nome} onChange={(e) => setProduto({...produto, nome: e.target.value})}></input>
                 <input className='border-1 border-[#979797] p-1 rounded-sm w-full' placeholder='Autor' value={produto.autor} onChange={(e) => setProduto({...produto, autor: e.target.value})}></input>
                 <input className='border-1 border-[#979797] p-1 rounded-sm w-full' placeholder='Ano' value={produto.ano_lancamento} onChange={(e) => setProduto({...produto, ano_lancamento: e.target.value})}></input>

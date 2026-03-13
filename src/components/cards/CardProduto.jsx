@@ -23,21 +23,21 @@ const CardProduto = ({produto}) => {
                     {imagem ? <img src={imagem} className="object-contain w-[270px] h-[270px]"></img> : <CiImageOff size={70}/>}
                 </div>
                 <div className="flex flex-col mr-5 ml-5 mt-6">
-                    <h1 className="nomeProduto truncate">{nome}</h1>
+                    <h1 className="nomeProduto truncate text-sm md:text-md">{nome}</h1>
                     <div className="flex justify-between items-center mt-2">
-                        <h2>R$ {preco}</h2>
+                        <h2 className="truncate text-sm md:text-md">R$ {preco}</h2>
                         {roleUser === "VENDEDOR" ? 
-                            <button className="flex items-center justify-center rounded-xl p-1 bg-[#5494D2] border-1 border-[#979797] hover:bg-[#31567A] text-white cursor-pointer" onClick={handleEdit}>
+                            <button className="flex text-sm md:text-md items-center justify-center rounded-xl p-1 bg-[#5494D2] border-1 border-[#979797] hover:bg-[#31567A] text-white cursor-pointer" onClick={handleEdit}>
                                 Editar
                                 <CiEdit color="white" size={23}/>
                             </button>
                             :   (estoque > 0 || tipo === "ebook" ?
-                                <button className="flex items-center justify-center rounded-xl p-1 bg-[#5494D2] border-1 border-[#979797] hover:bg-[#31567A] text-white cursor-pointer" onClick={(e) => {e.preventDefault(); e.stopPropagation(); addProduto(id)}}>
+                                <button className="flex text-sm md:text-md items-center justify-center rounded-xl p-1 bg-[#5494D2] border-1 border-[#979797] hover:bg-[#31567A] text-white cursor-pointer" onClick={(e) => {e.preventDefault(); e.stopPropagation(); addProduto(id)}}>
                                     Comprar
                                     <LuShoppingCart color="white"/>
                                 </button>
                                 :
-                                <div className="bg-[#F174A7] flex items-center justify-center rounded-xl p-1 border-1 border-[#979797] text-white">
+                                <div className="bg-[#F174A7] text-sm md:text-md flex items-center justify-center rounded-xl p-1 border-1 border-[#979797] text-white">
                                     Indisponível
                                 </div>
                             )

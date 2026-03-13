@@ -19,7 +19,7 @@ const CardPedido = ({ pedido, onDetalhar }) => {
     }
 
     return (
-        <div className="flex bg-[#FFFFFF] border-[#979797] rounded-lg border-1 w-[610px] h-[120px] shadow-xl ">
+        <div className="flex bg-[#FFFFFF] border-[#979797] rounded-lg border-1 w-[300px] h-[120px] md:w-[550px] shadow-xl text-sm md:text-base">
             <div className="flex flex-1 flex-col mr-5 ml-5 justify-center">
                 <div className="flex justify-between">
                     <p className="nomeProduto line-clamp-1">Pedido: {id}</p>

@@ -9,9 +9,10 @@ import { getMeusPedidos } from "../services/pedidoService";
 import { getProdutoById } from "../services/produtoService";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import { LoadingOutlined } from '@ant-design/icons';
 
 export default function MeusPedidos() {
-    const [pedidos, setPedidos] = useState([]);
+    const [pedidos, setPedidos] = useState(null);
     const [selectedPedido, setSelectedPedido] = useState(null);
     const [produtosDetalhes, setProdutosDetalhes] = useState([]);
     const navig = useNavigate();
@@ -33,17 +34,24 @@ export default function MeusPedidos() {
         carregaPedidos();
     }, [])
 
-    if(pedidos.length === 0 || !pedidos) {
+    if(!pedidos) {
         return(
             <div>
                 <Header/>
-                <div className="flex justify-center mt-9">
-                    <div className="flex bg-[#5494D2] w-[1365px] h-[730px] rounded-xl shadow-2xl justify-end">
-                        <div className="flex w-1/2 bg-white roundel-xl items-center justify-center font-bold text-2xl text-[#5494D2]">
-                            <p>Não há pedidos!</p>
-                        </div>
-                    </div>
-                </div>
+                <div className="flex mx-auto items-center justify-center  text-[#5494D2]"> 
+                    <LoadingOutlined style={{ fontSize: 60 }}/>
+                </div> 
+            </div>
+        )
+    }
+
+    if (pedidos.length === 0) {
+        return (
+            <div>
+                <Header/>
+                <div className="flex w-full items-center justify-center  text-[#5494D2]"> 
+                    <p className="text-3xl font-bold">Nenhuma pedido realizada ainda!</p>
+                </div> 
             </div>
         )
     }
@@ -72,7 +80,7 @@ export default function MeusPedidos() {
         };
 
         const etapas = [
-            { id: 1, label: "Pagamento Confirmado", icon: <MdOutlinePayments size={60} color="white"/> },
+            { id: 1, label: "Confirmado", icon: <MdOutlinePayments size={60} color="white"/> },
             { id: 2, label: "Enviado", icon: <TbTruckDelivery size={60} color="white"/> },
             { id: 3, label: "Entregue", icon: <IoMdCheckmarkCircleOutline size={60} color="white"/> },
         ];
@@ -81,11 +89,11 @@ export default function MeusPedidos() {
 
         return (
             <div className="flex flex-col items-center space-y-10 text-[#5494D2] font-bold">
-                <h1 className="text-4xl">Detalhes do Pedido: {selectedPedido?.id}</h1>
+                <h1 className="text-xl md:text-4xl">Detalhes do Pedido: {selectedPedido?.id}</h1>
                 <div className="flex space-x-10">
                     {etapas.map((etapa) => (
                         <div key={etapa.id} className="flex flex-col items-center space-y-5">
-                            <div className={`flex w-[150px] h-[150px] rounded-full items-center justify-center 
+                            <div className={`flex w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full items-center justify-center 
                                 ${nivelAtual >= etapa.id ? "bg-[#6dcf87]" : "bg-[#c7c7c7]"}`}>
                                 {etapa.icon}
                             </div>
@@ -101,9 +109,12 @@ export default function MeusPedidos() {
         <div>
             <Header/>
             <div className="flex justify-center mt-9">
-                <div className="flex bg-[#FFFFFF] w-[1365px] h-[730px] rounded-xl shadow-2xl">
-                    <div className="flex w-1/2 rounded-l-xl bg-[#5494D2] justify-center items-center">
+                <div className="flex flex-col md:flex-row bg-[#FFFFFF] w-[410px] min-h-[650px] md:w-[1165px] rounded-xl shadow-2xl">
+                    <div className={`${selectedPedido ? "hidden" : "flex"} flex-col md:flex rounded-xl md:rounded-l-xl md:rounded-r-none md:w-1/2 bg-[#5494D2] justify-center items-center p-4`}>
+                    
+                        <p className="text-white mt-5">Meus Pedidos:</p> 
                         <div className="flex flex-col h-[670px] space-y-5 overflow-y-auto items-center">
+                            
                             {pedidos.map(pd => (
                                 <div key={pd.id} className="flex-shrink-0">
                                     <CardPedido pedido={pd} onDetalhar={handleDetalhar}/>
@@ -112,35 +123,49 @@ export default function MeusPedidos() {
                         </div>
                     </div>
                     <div className="detalhes flex flex-col flex-1 justify-center items-center space-y-10">
-                        {selectedPedido ? detalhar(selectedPedido.status) : <p className="text-[#5494D2] font-bold text-2xl">Selecione um pedido para ver os detalhes</p>}
-                        {selectedPedido ? (
-                            <div className="space-y-5">
-                                <div className="flex space-x-5 items-center justify-center">
-                                    <p>Sub-total: {(selectedPedido.total - selectedPedido.frete).toFixed(2)}</p>
-                                    <p>Frete: {selectedPedido.frete ? selectedPedido.frete : (0).toFixed(2)}</p>
-                                    <p>Total: {selectedPedido.total}</p>
-                                </div>
-                                <div className="flex flex-col justify-center items-center ">
-                                    Produtos:
-                                    <div className="flex flex-col h-[230px] space-y-5 overflow-y-auto items-center ">
-                                        {produtosDetalhes.map(pd => (
-                                            <div key={pd.id} className="flex-shrink-0">
-                                                <CardProdutoPedido key={pd.id} produto={{...pd, estoque: pd.quantidade}}/>
-                                            </div>
-                                        ))}
+                        <div className={`${selectedPedido ? "flex" : "hidden md:flex"} flex-1 flex-col justify-start md:justify-center items-center p-5 relative`}>
+                            {selectedPedido && (
+                                <button 
+                                    onClick={() => setSelectedPedido(null)} 
+                                    className="md:hidden absolute top-4 right-4 text-[#5494D2] text-3xl font-bold p-2"
+                                >
+                                    ✕
+                                </button>
+                            )}
+
+                            {selectedPedido ? (
+                                <div className="w-full flex flex-col items-center space-y-6">
+                                    {detalhar(selectedPedido.status)}
+                                    <div className="flex flex-wrap gap-4 items-center justify-center font-bold text-[#5494D2]">
+                                        <p>Sub-total: {(selectedPedido.total - (selectedPedido.frete || 0)).toFixed(2)}</p>
+                                        <p>Frete: {Number(selectedPedido.frete || 0).toFixed(2)}</p>
+                                        <p className="text-xl">Total: {selectedPedido.total}</p>
                                     </div>
-                                </div>
-                                <div className="flex items-center justify-center">
+                                    <div className="w-full flex flex-col items-center">
+                                        <p className="font-bold text-[#5494D2] mb-2">Produtos:</p>
+                                        <div className="flex flex-col h-[250px] w-full space-y-4 overflow-y-auto items-center bg-gray-50 rounded-lg p-2">
+                                            {produtosDetalhes.map(pd => (
+                                                <CardProdutoPedido key={pd.id} produto={{...pd, estoque: pd.quantidade}}/>
+                                            ))}
+                                        </div>
+                                    </div>
+
                                     {selectedPedido.status === "ABERTO" && (
-                                        <button className='flex justify-center text-white items-center bg-[#F174A7] border-1 border-white p-2 rounded-lg font-bold hover:bg-[#d26e97] cursor-pointer' onClick={(e) => {e.stopPropagation();  e.preventDefault(); navig("/checkout/" + selectedPedido.id);}}>
+                                        <button 
+                                            className='bg-[#F174A7] text-white px-6 py-2 rounded-lg font-bold hover:bg-[#d26e97]'
+                                            onClick={() => navig("/checkout/" + selectedPedido.id)}
+                                        >
                                             Pagar Pedido
                                         </button>
                                     )}
                                 </div>
-                            </div>
-                        ) : null}
+                            ) : (
+                                <p className="hidden md:block text-[#5494D2] font-bold text-2xl text-center">
+                                    Selecione um pedido para ver os detalhes
+                                </p>
+                            )}
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
