@@ -5,14 +5,16 @@ const CardPedido = ({ pedido, onDetalhar }) => {
 
     const formataData = (data) => {
         if (!data) {
-            return("Data indisponível")
+            return("Aguardando")
         }
-        const dataPedido = new Date(data);
+        const dataAjustada = data.split('-').join('/'); 
+        const dataPedido = new Date(dataAjustada);
 
-        return(dataPedido.toLocaleDateString('pt-BR'));
+        return dataPedido.toLocaleDateString('pt-BR');
     }
 
     const handleDetalhar = () => {
+        console.log(pedido);
         if (onDetalhar) {
             onDetalhar({status, itens, id, frete, total})
         }
