@@ -32,9 +32,9 @@ export default function MinhasVendas() {
 
     if(!vendas) {
         return(
-            <div>
+            <div className="flex flex-col min-h-screen">
                 <HeaderVendedor/>
-                <div className="flex mx-auto items-center justify-center  text-[#5494D2]"> 
+                <div className="flex flex-grow mx-auto my-auto items-center justify-center  text-[#5494D2]"> 
                     <LoadingOutlined style={{ fontSize: 60 }}/>
                 </div> 
             </div>
@@ -43,9 +43,9 @@ export default function MinhasVendas() {
 
     if (vendas.length === 0) {
         return (
-            <div>
+            <div className="flex flex-col min-h-screen">
                 <HeaderVendedor/>
-                <div className="flex w-full items-center justify-center  text-[#5494D2]"> 
+                <div className="flex flex-grow my-auto items-center justify-center  text-[#5494D2]"> 
                     <p className="text-3xl font-bold">Nenhuma venda realizada ainda!</p>
                 </div> 
             </div>

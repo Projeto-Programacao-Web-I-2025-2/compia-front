@@ -35,9 +35,9 @@ export default function MeusPedidos() {
 
     if(!pedidos) {
         return(
-            <div>
+            <div className="flex flex-col min-h-screen">
                 <Header/>
-                <div className="flex mx-auto items-center justify-center  text-[#5494D2]"> 
+                <div className="flex flex-grow mx-auto my-auto items-center justify-center  text-[#5494D2]"> 
                     <LoadingOutlined style={{ fontSize: 60 }}/>
                 </div> 
             </div>
@@ -46,10 +46,10 @@ export default function MeusPedidos() {
 
     if (pedidos.length === 0) {
         return (
-            <div>
+            <div className="flex flex-col min-h-screen">
                 <Header/>
-                <div className="flex w-full items-center justify-center  text-[#5494D2]"> 
-                    <p className="text-3xl font-bold">Nenhuma pedido realizada ainda!</p>
+                <div className="flex flex-grow my-auto items-center justify-center  text-[#5494D2]"> 
+                    <p className="text-3xl font-bold">Nenhum pedido realizado ainda!</p>
                 </div> 
             </div>
         )

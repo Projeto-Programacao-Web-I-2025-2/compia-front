@@ -43,7 +43,7 @@ export default function PaginaInical() {
                             arrayProdutos={getProdutos}
                             filtros={renderizarProdutos()}
                         />
-                        <div className="hidden md:block">
+                        <div className="hidden md:block mr-10">
                             <ModalFiltro onEnviar={setFiltros}/>
                         </div>
                     </div> 

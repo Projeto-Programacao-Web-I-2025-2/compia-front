@@ -44,9 +44,9 @@ export default function PaginaProduto() {
 
     if (loading) {
          return(
-            <div>
+            <div className="flex flex-col min-h-screen">
                 {roleUser === "CLIENTE" || !roleUser ? <Header/> : <HeaderVendedor/>}
-                <div className="flex mx-auto items-center justify-center  text-[#5494D2]"> 
+                <div className="flex flex-grow mx-auto my-auto items-center justify-center text-[#5494D2]"> 
                     <LoadingOutlined style={{ fontSize: 60 }}/>
                 </div> 
             </div>
@@ -54,7 +54,7 @@ export default function PaginaProduto() {
     }
 
     const { nome, autor, descricao, preco, imagem, estoque, ano_lancamento, tipo, categorias } = produto || {};
-    
+
     return(
         <div>
             {roleUser === "CLIENTE" || !roleUser ? <Header/> : <HeaderVendedor/>}
@@ -64,20 +64,20 @@ export default function PaginaProduto() {
                         {imagem ? <img src={imagem} className="object-contain w-[370px] h-[370px] md:w-[570px] md:h-[570px]"></img> : <CiImageOff size={130}/>}
                     </div>
                     <div className="flex justify-between flex-col flex-1 text-bold ml-3 mt-5 md:ml-10 md:mt-10 md:mb-10 md:mr-10 w-[370px] md:w-[600px] items-center space-y-4">
-                        <div className="text-white">
-                            <h1 className="text-2xl line-clamp-3">{nome}</h1>
-                            <div className="flex justify-between line-clamp-1">
-                                <h2 className="line-clamp-1">Autor: {autor}</h2>
-                                <p className="capitalize">Tipo produto: {tipo}</p>
-                                <p>Ano: {ano_lancamento}</p>
-                            </div>
-                                <p className="capitalize">Categoria: {categoriaSistema.find(c => c.id === categorias[0])?.nome || 'Desconhecida'}</p>
+                            <div className="text-white w-full">
+                                <h1 className="text-2xl line-clamp-3">{nome}</h1>
+                                <div className="flex justify-between line-clamp-1">
+                                    <h2 className="line-clamp-1">Autor: {autor}</h2>
+                                    <p className="capitalize">Tipo produto: {tipo}</p>
+                                    <p>Ano: {ano_lancamento}</p>
+                                </div>
+                                    <p className="capitalize">Categoria: {categoriaSistema.find(c => c.id === categorias[0])?.nome || 'Desconhecida'}</p>
 
-                            <div className="flex justify-between">
-                                <h3>Vendido por: {vendedor?.nome || 'Desconhecido'}</h3>
-                                {estoque > 0 && <p>Estoque: {estoque}</p>}
+                                <div className="flex justify-between">
+                                    <h3>Vendido por: {vendedor?.nome || 'Desconhecido'}</h3>
+                                    {estoque > 0 && <p>Estoque: {estoque}</p>}
+                                </div>
                             </div>
-                        </div>
                         <div className="flex flex-col max-h-[170px] overflow-y-auto text-white text-justify">
                             <p>Descrição:</p>
                             {descricao}
