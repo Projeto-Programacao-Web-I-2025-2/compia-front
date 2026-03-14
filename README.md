@@ -1,18 +1,161 @@
-# React + Vite
+# COMPIA Front-end
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Interface web da plataforma de **e-commerce da editora COMPIA**, especializada em materiais bibliográficos sobre **Inteligência Artificial**.
 
-Currently, two official plugins are available:
+Este projeto foi desenvolvido utilizando **React + Vite** e consome uma **API RESTful em Django**, oferecendo uma experiência de compra moderna e eficiente.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Tecnologias Utilizadas
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **React 18+**
+- **Vite** (Build tool e servidor de desenvolvimento)
+- **Axios** (Consumo de API)
+- **React Router DOM** (Gerenciamento de rotas)
+- **Context API** (Gerenciamento de estado global, como o carrinho)
+- **Tailwind CSS ou CSS Modules** (Estilização)
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## Requisitos
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Antes de executar o projeto, é necessário ter instalado:
+
+- **Node.js (versão 18 ou superior)**
+- **npm ou yarn**
+- **Git**
+
+---
+
+## Instalação
+
+Clone o repositório:
+
+```bash
+git clone https://github.com/Projeto-Programacao-Web-I-2025-2/compia-front
+```
+
+Entre na pasta do projeto:
+
+```bash
+cd compia-front
+```
+
+Instale as dependências:
+
+```bash
+npm install
+```
+
+---
+
+## Executando a Aplicação
+
+Inicie o servidor de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+A aplicação ficará disponível em:
+
+```
+http://localhost:5173
+```
+
+---
+
+## Estrutura do Projeto
+
+```
+compia-front/
+│
+├── src/
+│   ├── components/    # Componentes reutilizáveis (cards, headers, auth)
+│   ├── contexts/      # Estados globais (CarrinhoContext)
+│   ├── pages/         # Páginas principais da aplicação
+│   ├── services/      # Integração com a API (Axios)
+│   ├── router/        # Configuração das rotas
+│   ├── App.jsx        # Componente raiz
+│   └── main.jsx       # Ponto de entrada da aplicação
+│
+├── public/            # Arquivos estáticos públicos
+├── package.json       # Dependências e scripts
+├── vite.config.js     # Configurações do Vite
+└── README.md
+```
+
+---
+
+## Funcionalidades
+
+### Catálogo de Produtos
+Visualização e busca de materiais bibliográficos relacionados à área de **Inteligência Artificial**.
+
+### Sistema de Carrinho
+- Adição de produtos
+- Remoção de produtos
+- Persistência de itens no carrinho
+
+### Autenticação
+- Cadastro de usuários
+- Login de usuários e vendedores
+
+### Gestão de Pedidos
+- Acompanhamento de compras
+- Histórico de pedidos
+
+### Perfil do Usuário
+- Gerenciamento de endereços
+- Atualização de dados pessoais
+- Informações da conta
+
+---
+
+## Integração com Backend
+
+O front-end se comunica com uma API desenvolvida em **Django REST Framework**.
+
+A comunicação é realizada utilizando **Axios**, com uma instância configurada para:
+
+- Definir automaticamente a **base URL da API**
+- Enviar requisições no formato **JSON**
+- Incluir automaticamente o **token de autenticação** armazenado no `localStorage`
+
+A autenticação utiliza o header HTTP:
+
+```
+Authorization: Token <token>
+```
+
+A URL da API pode ser configurada através da variável de ambiente:
+
+```
+VITE_API_URL
+```
+
+Caso essa variável não seja definida, o sistema utiliza como padrão:
+
+```
+http://127.0.0.1:8000/api/
+```
+
+Esse endereço assume que o **backend está sendo executado na mesma máquina que o front-end**.
+
+Caso a API esteja hospedada em outro servidor ou computador, a variável `VITE_API_URL` deve ser configurada com a URL correspondente.
+
+Exemplo:
+
+```
+VITE_API_URL=http://localhost:8000/api/
+```
+
+ou
+
+```
+VITE_API_URL=https://api.seudominio.com/api/
+```
+
+---
+
+Projeto desenvolvido para a disciplina de **Programação Web**.
