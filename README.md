@@ -1,23 +1,76 @@
-# COMPIA Front-end
+<h1 align="center">
+<img src="https://raw.githubusercontent.com/Projeto-Programacao-Web-I-2025-2/compia-front/main/assets/logo.png" width="240" height="220" style="margin-top: 2rem"/>
+</h1>
 
-Interface web da plataforma de **e-commerce da editora COMPIA**, especializada em materiais bibliográficos sobre **Inteligência Artificial**.
+## Conteúdos
+- [Descrição](#descricao)
+- [Principais Telas e Funcionalidades](#principais-telas)
+  - [Página Inicial](#home)
+  - [Página do Produto](#produto)
+  - [Carrinho](#carrinho)
+  - [Acompanhamento de Pedidos](#pedidos)
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)
+- [Requisitos](#requisitos)
+- [Instalação](#instalacao)
+- [Executando a Aplicação](#executando)
+- [Estrutura do Projeto](#estrutura)
+- [Integração com Backend](#integracao)
+---
+<h2 id="descricao">Descrição</h2>
 
-Este projeto foi desenvolvido utilizando **React + Vite** e consome uma **API RESTful em Django**, oferecendo uma experiência de compra moderna e eficiente.
+O **CompIA** é uma plataforma experimental de e-commerce que simula a venda de materiais bibliográficos voltados à área da Inteligência Artificial.
+
+O projeto foi desenvolvido para representar, de forma prática, o funcionamento de uma loja virtual especializada em livros técnicos, unindo um design intuitivo com um catálogo organizado de conteúdos relevantes da área.
+
+A aplicação foi construída utilizando React + Vite no front-end e consome uma API RESTful desenvolvida em Django, proporcionando uma experiência de compraeficiente.
+
+---
+<h2 id="principais-telas">Principais Telas e Funcionalidades</h2>
+
+### <a name="home">Página Inicial</a>
+Na **Página inicial** é possível realizar buscas personalizadas para encontrar livros específicos, além de explorar o acervo através de filtros avançados de categoria, idioma e tipo (e-book ou livro físico). Para facilitar a sua decisão, a plataforma também oferece a opção de ordenar os produtos por preço (crescente ou decrescente), garantindo que você encontre a melhor produto para o seu objetivo.
+
+<p align="center">
+  <img width="750" alt="home" src="https://raw.githubusercontent.com/Projeto-Programacao-Web-I-2025-2/compia-front/main/assets/compia-home.png" />
+</p>
+
+### <a name="produto">Página do Produto</a>
+Na **Página do Produto**, é possível visualizar todas as informações essenciais sobre o livro, como título, autor, descrição e demais detalhes relevantes, permitindo uma análise completa antes da compra.
+
+Além disso, a plataforma oferece a funcionalidade de cálculo de frete, possibilitando ao usuário verificar prazos e custos de entrega de forma prática. Para dar continuidade à compra, também é possível adicionar o item diretamente ao carrinho, tornando o processo simples e intuitivo.
+<p align="center">
+  <img width="750" alt="produto" src="https://raw.githubusercontent.com/Projeto-Programacao-Web-I-2025-2/compia-front/main/assets/compia-produto.png" />
+</p>
+
+### <a name="carrinho">Carrinho</a>
+Na **Página do Carrinho**, o usuário pode visualizar os produtos selecionados e acompanhar os detalhes da compra.
+
+É possível alterar a quantidade de itens de cada produto, remover itens individualmente ou limpar todo o carrinho. Ao final, o usuário pode prosseguir para o pagamento e concluir o pedido.
+<p align="center">
+  <img width="750" alt="carrinho" src="https://raw.githubusercontent.com/Projeto-Programacao-Web-I-2025-2/compia-front/main/assets/compia-carrinho.png" />
+</p>
+
+### <a name="pedidos">Acompanhamento de Pedidos</a>
+Na **Página de Pedidos**, o usuário pode acompanhar todas as compras realizadas, visualizando o status atualizado de cada pedido em tempo real.
+
+Também é possível consultar os produtos incluídos em cada compra, com seus respectivos detalhes. Além disso, notificações por e-mail são enviadas para informar qualquer mudança no status dos pedidos, mantendo o usuário sempre atualizado.
+
+<p align="center">
+  <img width="750" alt="pedidos" src="https://raw.githubusercontent.com/Projeto-Programacao-Web-I-2025-2/compia-front/main/assets/compia-pedidos.png" />
+</p>
 
 ---
 
-## Tecnologias Utilizadas
+<h2 id="tecnologias-utilizadas"> Tecnologias Utilizadas</h2>
 
-- **React 18+**
-- **Vite** (Build tool e servidor de desenvolvimento)
-- **Axios** (Consumo de API)
-- **React Router DOM** (Gerenciamento de rotas)
-- **Context API** (Gerenciamento de estado global, como o carrinho)
-- **Tailwind CSS ou CSS Modules** (Estilização)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
 
 ---
 
-## Requisitos
+## <a name="requisitos"></a>Requisitos
 
 Antes de executar o projeto, é necessário ter instalado:
 
@@ -27,7 +80,7 @@ Antes de executar o projeto, é necessário ter instalado:
 
 ---
 
-## Instalação
+## <a name="instalacao"></a>Instalação
 
 Clone o repositório:
 
@@ -49,7 +102,7 @@ npm install
 
 ---
 
-## Executando a Aplicação
+## <a name="executando"></a>Executando a Aplicação
 
 Inicie o servidor de desenvolvimento:
 
@@ -65,7 +118,7 @@ http://localhost:5173
 
 ---
 
-## Estrutura do Projeto
+## <a name="estrutura"></a>Estrutura do Projeto
 
 ```
 compia-front/
@@ -87,32 +140,7 @@ compia-front/
 
 ---
 
-## Funcionalidades
-
-### Catálogo de Produtos
-Visualização e busca de materiais bibliográficos relacionados à área de **Inteligência Artificial**.
-
-### Sistema de Carrinho
-- Adição de produtos
-- Remoção de produtos
-- Persistência de itens no carrinho
-
-### Autenticação
-- Cadastro de usuários
-- Login de usuários e vendedores
-
-### Gestão de Pedidos
-- Acompanhamento de compras
-- Histórico de pedidos
-
-### Perfil do Usuário
-- Gerenciamento de endereços
-- Atualização de dados pessoais
-- Informações da conta
-
----
-
-## Integração com Backend
+## <a name="integracao"></a>Integração com Backend
 
 O front-end se comunica com uma API desenvolvida em **Django REST Framework**.
 
