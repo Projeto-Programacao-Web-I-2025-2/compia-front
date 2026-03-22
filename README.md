@@ -22,7 +22,7 @@ O **CompIA** é uma plataforma experimental de e-commerce que simula a venda de 
 
 O projeto foi desenvolvido para representar, de forma prática, o funcionamento de uma loja virtual especializada em livros técnicos, unindo um design intuitivo com um catálogo organizado de conteúdos relevantes da área.
 
-A aplicação foi construída utilizando React + Vite no front-end e consome uma API RESTful desenvolvida em Django, proporcionando uma experiência de compraeficiente.
+A aplicação foi construída utilizando React + Vite no front-end e consome uma API RESTful desenvolvida em Django, proporcionando uma experiência de compra eficiente.
 
 ---
 <h2 id="principais-telas">Principais Telas e Funcionalidades</h2>
